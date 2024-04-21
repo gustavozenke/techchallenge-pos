@@ -31,4 +31,14 @@ public class Pedido {
     private List<Sobremesa> sobremesas;
     @Nullable
     private List<Acompanhamento> acompanhamentos;
+
+    public Pedido(String estadoPedido, String estadoPagamento, @Nullable Cliente cliente, @Nullable List<Lanche> lanches, @Nullable List<Bebida> bebidas, @Nullable List<Sobremesa> sobremesas, @Nullable List<Acompanhamento> acompanhamentos) {
+        this.estadoPedido = estadoPedido;
+        this.estadoPagamento = estadoPagamento;
+        this.cliente = cliente;
+        this.lanches = lanches;
+        this.bebidas = bebidas;
+        this.sobremesas = sobremesas;
+        this.acompanhamentos = acompanhamentos;
+    }
 }
