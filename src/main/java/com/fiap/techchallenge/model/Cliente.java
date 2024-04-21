@@ -16,7 +16,6 @@ public class Cliente {
 
     public Cliente(String cpf, String nome, String email, boolean marketing) {
         this.cpf = cpf;
-
         this.nome = nome;
         this.email = email;
         this.marketing = marketing;

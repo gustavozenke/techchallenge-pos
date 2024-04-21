@@ -7,14 +7,15 @@ import com.fiap.techchallenge.model.produtos.Sobremesa;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class Pedido {
-
-    private long id;
+    @Id
+    private String id;
     private String estadoPedido;
     private String estadoPagamento;
 
