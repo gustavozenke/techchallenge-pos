@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class Pedido {
+
     @Id
     private String id;
     private String estadoPedido;

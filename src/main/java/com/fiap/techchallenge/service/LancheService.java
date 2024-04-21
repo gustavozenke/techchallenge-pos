@@ -11,12 +11,13 @@ import java.util.Optional;
 
 @Service
 public class LancheService {
+
     @Autowired
     LancheRepository lancheRepository;
 
     public ResponseEntity<String> criarLanche(Lanche lanche) {
         try{
-            if (buscarLanche(lanche.getNome()).getStatusCode().equals(HttpStatus.NOT_FOUND)){
+            if (buscarLanche(lanche.getNome()).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 lancheRepository.save(
                         new Lanche(
                                 lanche.getNome(),

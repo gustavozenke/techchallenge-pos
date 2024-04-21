@@ -16,7 +16,7 @@ public class ClienteController {
 
     @PostMapping("/new")
     public ResponseEntity<String> criarCliente(@RequestBody Cliente cliente){
-        try{
+        try {
             return clienteService.criarCliente(cliente);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -25,7 +25,7 @@ public class ClienteController {
 
     @GetMapping("/{cpf}")
     public ResponseEntity<Cliente> buscarCliente(@PathVariable("cpf") String cpf){
-        try{
+        try {
             return clienteService.buscarCliente(cpf);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,7 +36,7 @@ public class ClienteController {
 
     @DeleteMapping("/{cpf}")
     public ResponseEntity<Cliente> apagarCliente(@PathVariable("cpf") String cpf){
-        try{
+        try {
             return clienteService.apagarCliente(cpf);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
