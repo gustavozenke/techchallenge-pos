@@ -1,12 +1,17 @@
 package com.fiap.techchallenge.model.produtos;
 
 import com.fiap.techchallenge.model.Produto;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection= "lanche")
+@Getter
+@Setter
+@Document
 public class Lanche extends Produto {
 
-    public Lanche(Long id, String nome, String descricao, float preco) {
-        super(id, nome, descricao, preco);
+    public Lanche(String nome, String descricao, float preco) {
+        super(nome, descricao, preco);
     }
+
 }

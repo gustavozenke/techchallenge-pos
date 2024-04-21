@@ -16,14 +16,15 @@ public class ClienteService {
      private ClienteRepository clienteRepository;
 
 
-    public ResponseEntity<Cliente> criarCliente(Cliente cliente) {
+    public ResponseEntity<String> criarCliente(Cliente cliente) {
         try {
-            if (procurarCliente(cliente.getCpf()).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+            if (buscarCliente(cliente.getCpf()).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 clienteRepository.save(
                         new Cliente(
                                 cliente.getCpf(),
                                 cliente.getNome(),
-                                cliente.getEmail()
+                                cliente.getEmail(),
+                                cliente.isMarketing()
                         )
                 );
                 return new ResponseEntity<>(null, HttpStatus.CREATED);
@@ -31,11 +32,11 @@ public class ClienteService {
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<Cliente> procurarCliente(String cpf) {
+    public ResponseEntity<Cliente> buscarCliente(String cpf) {
         Optional<Cliente> clienteData_ = clienteRepository.findByCpf(cpf);
         if (clienteData_.isPresent()) {
             return new ResponseEntity<>(clienteData_.get(), HttpStatus.OK);
@@ -46,7 +47,7 @@ public class ClienteService {
 
     public ResponseEntity<Cliente> apagarCliente(String cpf) {
         try {
-            Cliente clienteData_ = procurarCliente(cpf).getBody();
+            Cliente clienteData_ = buscarCliente(cpf).getBody();
             clienteRepository.delete(clienteData_);
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {

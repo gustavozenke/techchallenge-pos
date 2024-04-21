@@ -15,7 +15,7 @@ public class ClienteController {
     @Autowired ClienteService clienteService;
 
     @PostMapping("/new")
-    public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente){
+    public ResponseEntity<String> criarCliente(@RequestBody Cliente cliente){
         try{
             return clienteService.criarCliente(cliente);
         } catch (Exception e) {
@@ -24,9 +24,9 @@ public class ClienteController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<Cliente> criarCliente(@PathVariable("cpf") String cpf){
+    public ResponseEntity<Cliente> buscarCliente(@PathVariable("cpf") String cpf){
         try{
-            return clienteService.procurarCliente(cpf);
+            return clienteService.buscarCliente(cpf);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

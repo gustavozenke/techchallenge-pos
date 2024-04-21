@@ -1,16 +1,19 @@
 package com.fiap.techchallenge.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class Produto {
-    private Long id;
+    @Id
+    private String id;
     private String nome;
     private String descricao;
     private float preco;
 
+    public Produto(String nome, String descricao, float preco) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
 }
