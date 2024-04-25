@@ -2,7 +2,7 @@ package com.fiap.techchallenge.domain.service;
 
 import com.fiap.techchallenge.domain.model.produtos.Acompanhamento;
 
-import com.fiap.techchallenge.usecase.repository.AcompanhamentoRepository;
+import com.fiap.techchallenge.usecase.repository.produtos.AcompanhamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

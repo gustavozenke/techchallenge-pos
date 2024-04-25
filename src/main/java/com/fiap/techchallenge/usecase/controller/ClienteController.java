@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.usecase.controller.produtos;
+package com.fiap.techchallenge.usecase.controller;
 
 import com.fiap.techchallenge.domain.model.Cliente;
 import com.fiap.techchallenge.domain.service.ClienteService;
