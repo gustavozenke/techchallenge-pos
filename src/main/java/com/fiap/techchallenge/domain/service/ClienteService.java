@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.domain.service;
 
 import com.fiap.techchallenge.domain.model.Cliente;
-import com.fiap.techchallenge.usecase.repository.ClienteRepository;
+import com.fiap.techchallenge.usecase.repository.produtos.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,17 +1,17 @@
 version: '3.1'
 
 services:
-#  server:
-#    container_name: backend
-#    build: .
-#    environment:
-#      db_url: mongodb://techchallenge:password@mongo:27017/
-#      db_user: techchallenge
-#      db_password: password
-#    ports:
-#      - 8083:8090
+  server:
+    container_name: backend
+    build: .
+    environment:
+      db_url: mongodb://techchallenge:password@localhost:8082/
+      db_database: TechChallenge
+    ports:
+      - 8083:8090
 
   mongo:
+    container_name: "mongo"
     image: mongo
     restart: always
     environment:
@@ -21,6 +21,7 @@ services:
       - 8082:27017
 
   mongo-express:
+    container_name: "gui"
     image: mongo-express
     restart: always
     ports:

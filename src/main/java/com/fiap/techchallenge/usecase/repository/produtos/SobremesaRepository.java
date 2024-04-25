@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.usecase.repository;
+package com.fiap.techchallenge.usecase.repository.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.domain.service;
 
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
-import com.fiap.techchallenge.usecase.repository.SobremesaRepository;
+import com.fiap.techchallenge.usecase.repository.produtos.SobremesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
