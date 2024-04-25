@@ -1,7 +1,7 @@
-package com.fiap.techchallenge.controller;
+package com.fiap.techchallenge.usecase.controller;
 
-import com.fiap.techchallenge.model.Cliente;
-import com.fiap.techchallenge.service.ClienteService;
+import com.fiap.techchallenge.domain.model.Cliente;
+import com.fiap.techchallenge.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-    @Autowired ClienteService clienteService;
+    @Autowired
+    ClienteService clienteService;
 
     @PostMapping("/new")
     public ResponseEntity<String> criarCliente(@RequestBody Cliente cliente){

@@ -1,6 +1,6 @@
-package com.fiap.techchallenge.model.produtos;
+package com.fiap.techchallenge.domain.model.produtos;
 
-import com.fiap.techchallenge.model.Produto;
+import com.fiap.techchallenge.domain.model.Produto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;

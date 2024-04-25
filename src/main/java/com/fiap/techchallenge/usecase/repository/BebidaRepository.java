@@ -1,6 +1,6 @@
-package com.fiap.techchallenge.repository;
+package com.fiap.techchallenge.usecase.repository;
 
-import com.fiap.techchallenge.model.produtos.Bebida;
+import com.fiap.techchallenge.domain.model.produtos.Bebida;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

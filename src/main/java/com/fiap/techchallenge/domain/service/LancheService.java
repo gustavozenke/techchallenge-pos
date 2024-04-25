@@ -1,7 +1,7 @@
-package com.fiap.techchallenge.service;
+package com.fiap.techchallenge.domain.service;
 
-import com.fiap.techchallenge.model.produtos.Lanche;
-import com.fiap.techchallenge.repository.LancheRepository;
+import com.fiap.techchallenge.domain.model.produtos.Lanche;
+import com.fiap.techchallenge.usecase.repository.LancheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

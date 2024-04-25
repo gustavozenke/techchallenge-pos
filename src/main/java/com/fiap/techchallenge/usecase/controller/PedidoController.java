@@ -1,7 +1,7 @@
-package com.fiap.techchallenge.controller;
+package com.fiap.techchallenge.usecase.controller;
 
-import com.fiap.techchallenge.model.Pedido;
-import com.fiap.techchallenge.service.PedidoService;
+import com.fiap.techchallenge.domain.model.Pedido;
+import com.fiap.techchallenge.domain.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

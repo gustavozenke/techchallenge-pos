@@ -1,8 +1,8 @@
-package com.fiap.techchallenge.service;
+package com.fiap.techchallenge.domain.service;
 
 
-import com.fiap.techchallenge.model.Pedido;
-import com.fiap.techchallenge.repository.PedidoRepository;
+import com.fiap.techchallenge.domain.model.Pedido;
+import com.fiap.techchallenge.usecase.repository.PedidoRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

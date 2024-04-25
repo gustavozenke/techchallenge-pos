@@ -1,8 +1,8 @@
-package com.fiap.techchallenge.service;
+package com.fiap.techchallenge.domain.service;
 
-import com.fiap.techchallenge.model.produtos.Acompanhamento;
+import com.fiap.techchallenge.domain.model.produtos.Acompanhamento;
 
-import com.fiap.techchallenge.repository.AcompanhamentoRepository;
+import com.fiap.techchallenge.usecase.repository.AcompanhamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

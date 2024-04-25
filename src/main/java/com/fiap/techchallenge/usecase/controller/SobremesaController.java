@@ -1,7 +1,7 @@
-package com.fiap.techchallenge.controller;
+package com.fiap.techchallenge.usecase.controller;
 
-import com.fiap.techchallenge.model.produtos.Bebida;
-import com.fiap.techchallenge.service.BebidaService;
+import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
+import com.fiap.techchallenge.domain.service.SobremesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/bebida")
-public class BebidaController {
+@RequestMapping("/sobremesa")
+public class SobremesaController {
 
     @Autowired
-    BebidaService bebidaService;
+    SobremesaService sobremesaService;
 
     @PostMapping("/new")
-    public ResponseEntity<String> criarBebida(@RequestBody Bebida bebida){
+    public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa){
         try {
-            return bebidaService.criarBebida(bebida);
+            return sobremesaService.criarSobremsa(sobremesa);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
