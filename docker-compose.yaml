@@ -5,8 +5,8 @@ services:
     container_name: backend
     build: .
     environment:
-      db_url: mongodb://techchallenge:password@localhost:8082/
-      db_database: TechChallenge
+      DB_URL: mongodb://techchallenge:password@localhost:8082/
+      DB_DATABASE: TechChallenge
     ports:
       - 8083:8090
 

@@ -2,6 +2,7 @@ package com.fiap.techchallenge.domain.service;
 
 import com.fiap.techchallenge.domain.model.Cliente;
 import com.fiap.techchallenge.usecase.repository.ClienteRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Log4j2
 @Service
 public class ClienteService {
 
@@ -29,10 +31,12 @@ public class ClienteService {
                 );
                 return new ResponseEntity<>(null, HttpStatus.CREATED);
             } else {
+                log.warn("cliente já cadastrado");
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            log.error(e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
