@@ -16,11 +16,12 @@ public class PedidoService {
     @Autowired
     PedidoRepository pedidoRepository;
 
-    public ResponseEntity<Pedido> criarPedido(Pedido pedido) {
+    public ResponseEntity<String> criarPedido(Pedido pedido) {
         try {
             pedidoRepository.save(new Pedido(
                     pedido.getEstadoPedido(),
                     pedido.getEstadoPagamento(),
+                    contador(),
                     pedido.getCliente(),
                     pedido.getLanches(),
                     pedido.getBebidas(),
@@ -34,5 +35,10 @@ public class PedidoService {
             log.error(e.toString());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public long contador(){
+        long contador = pedidoRepository.count();
+        return contador + 1;
     }
 }

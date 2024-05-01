@@ -16,7 +16,7 @@ public class PedidoController {
     PedidoService pedidoService;
 
     @PostMapping("/new")
-    public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido) {
+    public ResponseEntity<String> criarPedido(@RequestBody Pedido pedido) {
         try {
             return pedidoService.criarPedido(pedido);
         } catch (Exception e) {
