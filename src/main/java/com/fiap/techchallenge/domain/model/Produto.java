@@ -10,8 +10,11 @@ public class Produto {
     @Id
     private String id;
     private String nome;
+
+    //nome do produto em snake case para facilitar buscas no banco de dados
     @JsonProperty("nome_banco")
     private String nomeBanco;
+
     private String descricao;
     private float preco;
 

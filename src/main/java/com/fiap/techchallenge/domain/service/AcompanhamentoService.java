@@ -55,4 +55,14 @@ public class AcompanhamentoService {
         return new ResponseEntity<>(acompanhamentos, HttpStatus.OK);
     }
 
+    public ResponseEntity apagarAcompanhamento(String nomeBanco) {
+        try {
+            Acompanhamento acompanhamentoData_ = buscarAcompanhamento(nomeBanco).getBody();
+            acompanhamentoRepository.delete(acompanhamentoData_);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }
