@@ -21,6 +21,7 @@ public class LancheService {
                 lancheRepository.save(
                         new Lanche(
                                 lanche.getNome(),
+                                gerarNomeBanco(lanche.getNomeBanco()),
                                 lanche.getDescricao(),
                                 lanche.getPreco()
                         )
@@ -34,8 +35,13 @@ public class LancheService {
         }
     }
 
-    public ResponseEntity<Lanche> buscarLanche(String nome) {
-        Optional<Lanche> lancheData_ = lancheRepository.findByNome(nome);
+    public String gerarNomeBanco(String nome){
+        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        return nomeBanco;
+    }
+
+    public ResponseEntity<Lanche> buscarLanche(String nomeBanco) {
+        Optional<Lanche> lancheData_ = lancheRepository.findByNomeBanco(nomeBanco);
         if (lancheData_.isPresent()) {
             return new ResponseEntity<>(lancheData_.get(), HttpStatus.OK);
         } else {

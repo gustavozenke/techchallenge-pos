@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface LancheRepository extends MongoRepository<Lanche, String> {
-    Optional<Lanche> findByNome(String nome);
+    Optional<Lanche> findByNomeBanco(String nomeBanco);
 }

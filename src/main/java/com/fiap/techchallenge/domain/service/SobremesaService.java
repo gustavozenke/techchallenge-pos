@@ -21,6 +21,7 @@ public class SobremesaService {
                 sobremesaRepository.save(
                         new Sobremesa(
                                 sobremesa.getNome(),
+                                gerarNomeBanco(sobremesa.getNome()),
                                 sobremesa.getDescricao(),
                                 sobremesa.getPreco()
                         )
@@ -32,6 +33,11 @@ public class SobremesaService {
         } catch (Exception e) {
             return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public String gerarNomeBanco(String nome){
+        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        return nomeBanco;
     }
 
     public ResponseEntity<Sobremesa> buscarSobremesa(String nome) {

@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Bebida extends Produto {
     private String tamanho;
 
-    public Bebida(String nome, String descricao, float preco, String tamanho) {
-        super(nome, descricao, preco);
+    public Bebida(String nome, String nomeBanco, String descricao, float preco, String tamanho) {
+        super(nome, nomeBanco, descricao, preco);
         this.tamanho = tamanho;
     }
 }

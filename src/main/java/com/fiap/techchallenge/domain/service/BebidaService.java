@@ -21,6 +21,7 @@ public class BebidaService {
                 bebidaRepository.save(
                         new Bebida(
                                 bebida.getNome(),
+                                gerarNomeBanco(bebida.getNomeBanco()),
                                 bebida.getDescricao(),
                                 bebida.getPreco(),
                                 bebida.getTamanho()
@@ -33,6 +34,11 @@ public class BebidaService {
         } catch (Exception e) {
             return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public String gerarNomeBanco(String nome){
+        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        return nomeBanco;
     }
 
     public ResponseEntity<Bebida> buscarBebida(String nome) {
