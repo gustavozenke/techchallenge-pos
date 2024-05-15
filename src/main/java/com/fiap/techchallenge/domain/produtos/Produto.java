@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.domain.produtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -10,6 +11,7 @@ public class Produto {
     private String id;
     private String nome;
 
+    @JsonProperty("nome_banco")
     //nome do produto em snake case para facilitar buscas no banco de dados
     private String nomeBanco;
 
