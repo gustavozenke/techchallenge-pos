@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,7 +35,7 @@ public class SobremesaUseCase {
         }
     }
 
-    public String gerarNomeBanco(String nome){
+    public String gerarNomeBanco(String nome) {
         String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
         return nomeBanco;
     }
@@ -45,6 +46,21 @@ public class SobremesaUseCase {
             return new ResponseEntity<>(sobremesaData_.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<List<Sobremesa>> listarSobremesas() {
+        List<Sobremesa> sobremesas = sobremesaRepository.findAll();
+        return new ResponseEntity<>(sobremesas, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> apagarSobremesa(String nomeBanco) {
+        try {
+            Sobremesa sobremesaData_ = buscarSobremesa(nomeBanco).getBody();
+            sobremesaRepository.delete(sobremesaData_);
+            return new ResponseEntity<>(sobremesaData_.getNome() + " apagado", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

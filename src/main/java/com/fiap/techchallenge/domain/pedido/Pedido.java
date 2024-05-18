@@ -21,6 +21,7 @@ public class Pedido {
     private String id;
     private String estadoPedido;
     private String estadoPagamento;
+
     @JsonIgnore
     private long sequencia;
 

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,7 @@ public class LancheUseCase {
                                 lanche.getPreco()
                         )
                 );
-                return new ResponseEntity<>(null, HttpStatus.CREATED);
+                return new ResponseEntity<>(lanche.getNome() + " salvo no banco de dados", HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);
             }
@@ -34,7 +35,7 @@ public class LancheUseCase {
         }
     }
 
-    public String gerarNomeBanco(String nome){
+    public String gerarNomeBanco(String nome) {
         String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
         return nomeBanco;
     }
@@ -45,6 +46,21 @@ public class LancheUseCase {
             return new ResponseEntity<>(lancheData_.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<List<Lanche>> listarLanches() {
+        List<Lanche> lanches = lancheRepository.findAll();
+        return new ResponseEntity<>(lanches, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> apagarLanche(String nomeBanco) {
+        try {
+            Lanche lancheData_ = buscarLanche(nomeBanco).getBody();
+            lancheRepository.delete(lancheData_);
+            return new ResponseEntity<>(lancheData_.getNome() + " apagado", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

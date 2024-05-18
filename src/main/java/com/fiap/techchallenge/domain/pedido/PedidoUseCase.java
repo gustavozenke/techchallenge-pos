@@ -36,7 +36,7 @@ public class PedidoUseCase {
         }
     }
 
-    public long contador(){
+    public long contador() {
         long contador = pedidoRepository.count();
         return contador + 1;
     }

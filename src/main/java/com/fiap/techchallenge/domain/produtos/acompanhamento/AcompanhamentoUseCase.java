@@ -35,7 +35,7 @@ public class AcompanhamentoUseCase {
         }
     }
 
-    public String gerarNomeBanco(String nome){
+    public String gerarNomeBanco(String nome) {
         String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
         return nomeBanco;
     }
@@ -54,11 +54,11 @@ public class AcompanhamentoUseCase {
         return new ResponseEntity<>(acompanhamentos, HttpStatus.OK);
     }
 
-    public ResponseEntity apagarAcompanhamento(String nomeBanco) {
+    public ResponseEntity<String> apagarAcompanhamento(String nomeBanco) {
         try {
             Acompanhamento acompanhamentoData_ = buscarAcompanhamento(nomeBanco).getBody();
             acompanhamentoRepository.delete(acompanhamentoData_);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(acompanhamentoData_.getNome() + " apagado", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
