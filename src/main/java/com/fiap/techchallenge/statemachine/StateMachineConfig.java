@@ -62,5 +62,7 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<Estado
             }
         };
     }
+
+    //https://medium.com/nstech/spring-state-machine-como-op%C3%A7%C3%A3o-97144586bf48
 }
 
