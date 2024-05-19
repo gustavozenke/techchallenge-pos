@@ -1,25 +1,24 @@
 package com.fiap.techchallenge.statemachine;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
-import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
 import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 
-import java.util.EnumSet;
-
+@Log4j2
 @Configuration
 @EnableStateMachine
-public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<EstadosPedido, EventosPedido> {
+public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<EstadoPedido, EventoPedido> {
 
     //Startup automatico + incluir listener
     @Override
-    public void configure(StateMachineConfigurationConfigurer<EstadosPedido, EventosPedido> config)
+    public void configure(StateMachineConfigurationConfigurer<EstadoPedido, EventoPedido> config)
             throws Exception {
         config
                 .withConfiguration()
@@ -27,38 +26,38 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<Estado
                 .listener(listener());
     }
     //Configurar o estado inicial e carregar os outros estados
-    @Override
-    public void configure(StateMachineStateConfigurer<EstadosPedido, EventosPedido> states) throws Exception {
-        states
-                .withStates()
-                .initial(EstadosPedido.A_PAGAR)
-                .states(EnumSet.allOf(EstadosPedido.class));
-    }
+//    @Override
+//    public void configure(StateMachineStateConfigurer<EstadoPedido, EventoPedido> states) throws Exception {
+//        states
+//                .withStates()
+//                .initial(EstadoPedido.A_PAGAR)
+//                .states(EnumSet.allOf(EstadoPedido.class));
+//    }
 
     //Definir as transicoes
     //de .source para .target apos .event
     @Override
-    public void configure(StateMachineTransitionConfigurer<EstadosPedido, EventosPedido> transitions) throws Exception {
+    public void configure(StateMachineTransitionConfigurer<EstadoPedido, EventoPedido> transitions) throws Exception {
         transitions
                 .withExternal()
-                .source(EstadosPedido.A_PAGAR).target(EstadosPedido.PAGO).event(EventosPedido.PEDIDO_PAGO)
+                .source(EstadoPedido.A_PAGAR).target(EstadoPedido.PAGO).event(EventoPedido.PEDIDO_PAGO)
                 .and().withExternal()
-                .source(EstadosPedido.PAGO).target(EstadosPedido.RECEBIDO).event(EventosPedido.PEDIDO_ENVIADO)
+                .source(EstadoPedido.PAGO).target(EstadoPedido.RECEBIDO).event(EventoPedido.PEDIDO_ENVIADO)
                 .and().withExternal()
-                .source(EstadosPedido.RECEBIDO).target(EstadosPedido.EM_PREPARACAO).event(EventosPedido.A_PREPARA)
+                .source(EstadoPedido.RECEBIDO).target(EstadoPedido.EM_PREPARACAO).event(EventoPedido.A_PREPARA)
                 .and().withExternal()
-                .source(EstadosPedido.EM_PREPARACAO).target(EstadosPedido.PRONTO).event(EventosPedido.EM_SEPRARACAO)
+                .source(EstadoPedido.EM_PREPARACAO).target(EstadoPedido.PRONTO).event(EventoPedido.EM_SEPRARACAO)
                 .and().withExternal()
-                .source(EstadosPedido.PRONTO).target(EstadosPedido.FINALIZADO).event(EventosPedido.ENTREGAR);
+                .source(EstadoPedido.PRONTO).target(EstadoPedido.FINALIZADO).event(EventoPedido.ENTREGAR);
     }
 
     //implementar o listener
     @Bean
-    public StateMachineListener<EstadosPedido, EventosPedido> listener() {
-        return new StateMachineListenerAdapter<EstadosPedido, EventosPedido>() {
+    public StateMachineListener<EstadoPedido, EventoPedido> listener() {
+        return new StateMachineListenerAdapter<EstadoPedido, EventoPedido>() {
             @Override
-            public void stateChanged(State<EstadosPedido, EventosPedido> from, State<EstadosPedido, EventosPedido> to) {
-                System.out.println("OrderState change from " + from.getId() + " to " + to.getId());
+            public void stateChanged(State<EstadoPedido, EventoPedido> from, State<EstadoPedido, EventoPedido> to) {
+                log.info("Estado do pedido mudou de " + from.getId() + " para " + to.getId());
             }
         };
     }

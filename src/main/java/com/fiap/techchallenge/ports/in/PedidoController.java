@@ -26,4 +26,14 @@ public class PedidoController {
 
     //TODO fazer update
 
+    @GetMapping("/pay/{pedido}")
+    public ResponseEntity<String> pagarPedido(@PathVariable("pedido") Long sequencia){
+        try {
+            return pedidoUseCase.pagarPedido(sequencia);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

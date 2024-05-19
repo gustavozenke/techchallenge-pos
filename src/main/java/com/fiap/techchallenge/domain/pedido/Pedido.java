@@ -6,6 +6,7 @@ import com.fiap.techchallenge.domain.produtos.acompanhamento.Acompanhamento;
 import com.fiap.techchallenge.domain.produtos.bebida.Bebida;
 import com.fiap.techchallenge.domain.produtos.lanche.Lanche;
 import com.fiap.techchallenge.domain.produtos.sobremesa.Sobremesa;
+import com.fiap.techchallenge.statemachine.EstadoPedido;
 import jakarta.annotation.Nullable;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -19,9 +20,11 @@ public class Pedido {
 
     @Id
     private String id;
-    private String estadoPedido;
-    private String estadoPagamento;
 
+    @JsonIgnore
+    private EstadoPedido estadoPedido;
+
+    //numero do pedido
     @JsonIgnore
     private long sequencia;
 
@@ -37,9 +40,8 @@ public class Pedido {
     @Nullable
     private List<Acompanhamento> acompanhamentos;
 
-    public Pedido(String estadoPedido, String estadoPagamento, long sequencia, @Nullable Cliente cliente, @Nullable List<Lanche> lanches, @Nullable List<Bebida> bebidas, @Nullable List<Sobremesa> sobremesas, @Nullable List<Acompanhamento> acompanhamentos) {
-        this.estadoPedido = estadoPedido;
-        this.estadoPagamento = estadoPagamento;
+    public Pedido(long sequencia, @Nullable Cliente cliente, @Nullable List<Lanche> lanches, @Nullable List<Bebida> bebidas, @Nullable List<Sobremesa> sobremesas, @Nullable List<Acompanhamento> acompanhamentos) {
+        this.estadoPedido = EstadoPedido.A_PAGAR;
         this.sequencia = sequencia;
         this.cliente = cliente;
         this.lanches = lanches;

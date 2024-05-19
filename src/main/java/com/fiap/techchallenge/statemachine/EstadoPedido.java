@@ -1,6 +1,6 @@
 package com.fiap.techchallenge.statemachine;
 
-public enum EstadosPedido {
+public enum EstadoPedido {
     A_PAGAR,
     PAGO,
     RECEBIDO,
