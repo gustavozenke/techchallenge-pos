@@ -13,8 +13,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>techchallenge</name>
 	<description>Demo project for Spring Boot</description>
+
 	<properties>
 		<java.version>17</java.version>
+		<swagger.version>2.5.0</swagger.version>
+		<statemachine.version>4.0.0</statemachine.version>
+		<annotations.version>24.1.0</annotations.version>
 	</properties>
 	<dependencies>
 
@@ -40,7 +44,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.5.0</version>
+			<version>${swagger.version}</version>
 		</dependency>
 
 		<!--MongoDB-->
@@ -48,6 +52,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
+		<!--StateMachine-->
+		<dependency>
+			<groupId>org.springframework.statemachine</groupId>
+			<artifactId>spring-statemachine-starter</artifactId>
+			<version>${statemachine.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.statemachine</groupId>
+			<artifactId>spring-statemachine-data-mongodb</artifactId>
+			<version>${statemachine.version}</version>
+		</dependency>
+
 
 		<!--Test-->
 		<dependency>
@@ -58,7 +75,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>13.0</version>
+            <version>${annotations.version}</version>
             <scope>compile</scope>
         </dependency>
 
