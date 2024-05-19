@@ -64,8 +64,7 @@
 			<artifactId>spring-statemachine-data-mongodb</artifactId>
 			<version>${statemachine.version}</version>
 		</dependency>
-
-
+		
 		<!--Test-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
