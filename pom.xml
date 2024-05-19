@@ -20,8 +20,8 @@
 		<statemachine.version>4.0.0</statemachine.version>
 		<annotations.version>24.1.0</annotations.version>
 	</properties>
-	<dependencies>
 
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -64,7 +64,7 @@
 			<artifactId>spring-statemachine-data-mongodb</artifactId>
 			<version>${statemachine.version}</version>
 		</dependency>
-		
+
 		<!--Test-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -77,7 +77,6 @@
             <version>${annotations.version}</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
 
 	<build>
