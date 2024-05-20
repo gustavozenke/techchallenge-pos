@@ -36,7 +36,7 @@ public class ClienteController {
     //TODO fazer updates
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Cliente> apagarCliente(@PathVariable("cpf") String cpf){
+    public ResponseEntity<String> apagarCliente(@PathVariable("cpf") String cpf){
         try {
             return clienteUseCase.apagarCliente(cpf);
         } catch (Exception e) {

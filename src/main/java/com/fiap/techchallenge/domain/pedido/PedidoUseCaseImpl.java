@@ -23,6 +23,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PedidoUseCaseImpl implements PedidoUseCase {
 
+    static String SEQUENCIA;
+
     @Autowired
     PedidoRepository pedidoRepository;
 
@@ -40,7 +42,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
                             pedido.getAcompanhamentos()
                     )
             );
-            log.info("pedido criado " + contador);
+            log.info("pedido {} criado", contador);
             return new ResponseEntity<>("pedido " + contador + " criado", HttpStatus.CREATED);
         } catch (Exception e) {
             log.error(e.toString());
@@ -48,7 +50,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         }
     }
 
-    public long contador() {
+    private long contador() {
         long contador = pedidoRepository.count();
         return contador + 1;
     }
@@ -58,6 +60,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         if (pedidoData_.isPresent()) {
             return new ResponseEntity<>(pedidoData_.get(), HttpStatus.OK);
         } else {
+            log.warn("pedido {} não encontrado", sequencia);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -69,10 +72,11 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         if (pedidoData_.isPresent()) {
             pedidoData_.get().setEstadoPedido(EstadoPedido.PAGO);
             pedidoRepository.save(pedidoData_.get());
-
             sendEvent(sequencia, stateMachine, EventoPedido.PAGANDO);
+            log.info("pedido {} pago", sequencia);
             return new ResponseEntity<>("Pedido " + sequencia + " " + pedidoData_.get().getEstadoPedido().toString(), HttpStatus.OK);
         } else {
+            log.error("pedido {} não encontrado", sequencia);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -93,7 +97,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
 
     private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido){
         Message mensagem = MessageBuilder.withPayload(eventoPedido)
-                .setHeader("sequencia", sequencia)
+                .setHeader(SEQUENCIA, sequencia)
                 .build();
         stateMachine.sendEvent(mensagem);
     }

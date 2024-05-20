@@ -28,6 +28,7 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
                                 cliente.isMarketing()
                         )
                 );
+                log.info("cliente {} cadastrado", cliente.getNome());
                 return new ResponseEntity<>(null, HttpStatus.CREATED);
             } else {
                 log.warn("cliente já cadastrado");
@@ -44,16 +45,19 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
         if (clienteData_.isPresent()) {
             return new ResponseEntity<>(clienteData_.get(), HttpStatus.OK);
         } else {
+            log.warn("cpf {} não encontrado", cpf);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    public ResponseEntity<Cliente> apagarCliente(String cpf) {
+    public ResponseEntity<String> apagarCliente(String cpf) {
         try {
             Cliente clienteData_ = buscarCliente(cpf).getBody();
             clienteRepository.delete(clienteData_);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            log.info("cliente {} deletado", clienteData_.getId());
+            return new ResponseEntity<>("cliente apagado", HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
