@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.statemachine;
+package com.fiap.techchallenge.domain.statemachine;
 
 public enum EstadoPedido {
     A_PAGAR,

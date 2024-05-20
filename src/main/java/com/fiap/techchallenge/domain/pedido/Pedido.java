@@ -6,7 +6,7 @@ import com.fiap.techchallenge.domain.produtos.acompanhamento.Acompanhamento;
 import com.fiap.techchallenge.domain.produtos.bebida.Bebida;
 import com.fiap.techchallenge.domain.produtos.lanche.Lanche;
 import com.fiap.techchallenge.domain.produtos.sobremesa.Sobremesa;
-import com.fiap.techchallenge.statemachine.EstadoPedido;
+import com.fiap.techchallenge.domain.statemachine.EstadoPedido;
 import jakarta.annotation.Nullable;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
