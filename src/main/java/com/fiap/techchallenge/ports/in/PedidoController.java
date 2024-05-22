@@ -2,6 +2,7 @@ package com.fiap.techchallenge.ports.in;
 
 import com.fiap.techchallenge.domain.pedido.Pedido;
 import com.fiap.techchallenge.domain.pedido.PedidoUseCase;
+import com.fiap.techchallenge.domain.statemachine.EstadoPedido;
 import com.fiap.techchallenge.domain.statemachine.EventoPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,23 @@ public class PedidoController {
         }
     }
 
-    //TODO fazer update
+    @GetMapping("/{pedido}")
+    public ResponseEntity<Pedido> buscarPedido(@PathVariable("pedido") long sequencia){
+        try {
+            return pedidoUseCase.buscarPedido(sequencia);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{status}")
+    public ResponseEntity listarPedido(@PathVariable("status") EstadoPedido estadoPedido){
+        try {
+            return pedidoUseCase.listarPedidoEstado(estadoPedido);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/pay/{pedido}")
     public ResponseEntity<String> pagarPedido(@PathVariable("pedido") long sequencia){

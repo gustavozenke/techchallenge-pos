@@ -44,7 +44,14 @@ public class SobremesaController {
         }
     }
 
-    //TODO fazer updates
+    @PutMapping("/{nomeBanco}")
+    public ResponseEntity atualizarSobremesa(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Sobremesa sobremesa){
+        try {
+            return sobremesaUseCase.atualizarSobremesa(nomeBanco, sobremesa);
+        } catch (Exception e) {
+            return new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{nomeBanco}")
     public ResponseEntity apagarSobremesa(@PathVariable("nomeBanco") String nomeBanco){

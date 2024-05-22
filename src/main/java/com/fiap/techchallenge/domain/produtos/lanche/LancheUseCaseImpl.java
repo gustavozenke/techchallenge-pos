@@ -1,6 +1,7 @@
 package com.fiap.techchallenge.domain.produtos.lanche;
 
 import com.fiap.techchallenge.ports.out.adapters.produtos.LancheRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@Log4j2
 @Service
 public class LancheUseCaseImpl implements LancheUseCase {
 
@@ -17,7 +19,7 @@ public class LancheUseCaseImpl implements LancheUseCase {
 
     public ResponseEntity<String> criarLanche(Lanche lanche) {
         try{
-            if (buscarLanche(lanche.getNome()).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+            if (buscarLanche(gerarNomeBanco(lanche.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 lancheRepository.save(
                         new Lanche(
                                 lanche.getNome(),
@@ -26,11 +28,14 @@ public class LancheUseCaseImpl implements LancheUseCase {
                                 lanche.getPreco()
                         )
                 );
+                log.info("{} criado", lanche.getNome());
                 return new ResponseEntity<>(lanche.getNome() + " salvo no banco de dados", HttpStatus.CREATED);
             } else {
+                log.warn("{} já existe no banco de dados", lanche.getNome());
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);
             }
         } catch (Exception e) {
+            log.error(e);
             return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -53,13 +58,29 @@ public class LancheUseCaseImpl implements LancheUseCase {
         List<Lanche> lanches = lancheRepository.findAll();
         return new ResponseEntity<>(lanches, HttpStatus.OK);
     }
+    
+    public ResponseEntity<Lanche> atualizarLanche(String nomeBanco, Lanche lanche) {
+        try {
+            Lanche lancheData_ = buscarLanche(nomeBanco).getBody();
+            lancheData_.setDescricao(lanche.getDescricao());
+            lancheData_.setPreco(lanche.getPreco());
+            lancheRepository.save(lancheData_);
+            log.info("{} atualizado com sucesso", lancheData_.getNome());
+            return new ResponseEntity<>(lancheData_, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     public ResponseEntity<String> apagarLanche(String nomeBanco) {
         try {
             Lanche lancheData_ = buscarLanche(nomeBanco).getBody();
             lancheRepository.delete(lancheData_);
+            log.info("{} excluido", lancheData_.getNome());
             return new ResponseEntity<>(lancheData_.getNome() + " apagado", HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

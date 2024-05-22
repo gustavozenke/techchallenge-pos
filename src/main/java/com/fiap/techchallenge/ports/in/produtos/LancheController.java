@@ -44,7 +44,14 @@ public class LancheController {
         }
     }
 
-    //TODO fazer updates
+    @PutMapping("/{nomeBanco}")
+    public ResponseEntity atualizarLanche(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Lanche lanche){
+        try {
+            return lancheUseCase.atualizarLanche(nomeBanco, lanche);
+        } catch (Exception e) {
+            return new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{nomeBanco}")
     public ResponseEntity apagarLanche(@PathVariable("nomeBanco") String nomeBanco){

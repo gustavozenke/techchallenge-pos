@@ -44,7 +44,14 @@ public class AcompanhamentoController {
         }
     }
 
-    //TODO fazer updates
+    @PutMapping("/{nomeBanco}")
+    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Acompanhamento acompanhamento){
+        try {
+            return acompanhamentoUseCase.atualizarAcompanhamento(nomeBanco, acompanhamento);
+        } catch (Exception e) {
+            return new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{nomeBanco}")
     public ResponseEntity apagarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco){

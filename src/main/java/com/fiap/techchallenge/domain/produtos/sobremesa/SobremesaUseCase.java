@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface SobremesaUseCase {
     ResponseEntity<String> criarSobremsa(Sobremesa sobremesa);
-    String gerarNomeBanco(String nome);
-    ResponseEntity<Sobremesa> buscarSobremesa(String nome);
+    ResponseEntity<Sobremesa> buscarSobremesa(String nomeBanco);
     ResponseEntity<List<Sobremesa>> listarSobremesas();
     ResponseEntity<String> apagarSobremesa(String nomeBanco);
+    ResponseEntity<Sobremesa> atualizarSobremesa(String nomeBanco, Sobremesa sobremesa);
 }

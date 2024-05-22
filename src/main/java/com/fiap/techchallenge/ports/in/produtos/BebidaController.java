@@ -44,7 +44,14 @@ public class BebidaController {
         }
     }
 
-    //TODO fazer updates
+    @PutMapping("/{nomeBanco}")
+    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Bebida bebida){
+        try {
+            return bebidaUseCase.atualizarBebida(nomeBanco, bebida);
+        } catch (Exception e) {
+            return new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{nomeBanco}")
     public ResponseEntity apagarBebida(@PathVariable("nomeBanco") String nomeBanco){

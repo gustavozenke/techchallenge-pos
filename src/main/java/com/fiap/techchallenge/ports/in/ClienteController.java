@@ -33,7 +33,32 @@ public class ClienteController {
         }
     }
 
-    //TODO fazer updates
+    @PatchMapping("/{cpf}/marketing")
+    public ResponseEntity<Cliente> atualizarMarketing(@PathVariable("cpf") String cpf, @RequestBody boolean marketing){
+        try {
+            return clienteUseCase.atualizarMarketing(cpf, marketing);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping("/{cpf}/email")
+    public ResponseEntity<Cliente> atualizarEmail(@PathVariable("cpf") String cpf, @RequestBody String email){
+        try {
+            return clienteUseCase.atualizarEmail(cpf, email);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping("/{cpf}/nome")
+    public ResponseEntity<Cliente> atualizarNome(@PathVariable("cpf") String cpf, @RequestBody String nome){
+        try {
+            return clienteUseCase.atualizarNome(cpf, nome);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/{cpf}")
     public ResponseEntity<String> apagarCliente(@PathVariable("cpf") String cpf){

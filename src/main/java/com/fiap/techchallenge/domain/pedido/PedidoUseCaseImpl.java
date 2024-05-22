@@ -1,9 +1,9 @@
 package com.fiap.techchallenge.domain.pedido;
 
 
-import com.fiap.techchallenge.ports.out.adapters.PedidoRepository;
 import com.fiap.techchallenge.domain.statemachine.EstadoPedido;
 import com.fiap.techchallenge.domain.statemachine.EventoPedido;
+import com.fiap.techchallenge.ports.out.adapters.PedidoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -93,6 +94,11 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    public ResponseEntity<List<Pedido>> listarPedidoEstado(EstadoPedido estadoPedido) {
+        List<Pedido> pedidos = pedidoRepository.findAllByEstado(estadoPedido);
+        return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
     private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido){

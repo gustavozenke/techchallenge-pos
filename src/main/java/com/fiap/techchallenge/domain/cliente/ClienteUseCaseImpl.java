@@ -16,7 +16,6 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
     @Autowired
      private ClienteRepository clienteRepository;
 
-
     public ResponseEntity<String> criarCliente(Cliente cliente) {
         try {
             if (buscarCliente(cliente.getCpf()).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
@@ -56,6 +55,45 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
             clienteRepository.delete(clienteData_);
             log.info("cliente {} deletado", clienteData_.getId());
             return new ResponseEntity<>("cliente apagado", HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<Cliente> atualizarMarketing(String cpf, boolean marketing) {
+        try {
+            Cliente clienteData_ = buscarCliente(cpf).getBody();
+            clienteData_.setMarketing(marketing);
+            clienteRepository.save(clienteData_);
+            log.info("conta {}: preferencias de marketing atualizadas", clienteData_.getId());
+            return new ResponseEntity<>(clienteData_, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<Cliente> atualizarEmail(String cpf, String email) {
+        try {
+            Cliente clienteData_ = buscarCliente(cpf).getBody();
+            clienteData_.setEmail(email);
+            clienteRepository.save(clienteData_);
+            log.info("conta {}: email atualizado atualizado", clienteData_.getId());
+            return new ResponseEntity<>(clienteData_, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<Cliente> atualizarNome(String cpf, String nome) {
+        try {
+            Cliente clienteData_ = buscarCliente(cpf).getBody();
+            clienteData_.setNome(nome);
+            clienteRepository.save(clienteData_);
+            log.info("conta {}: nome atualizado atualizado", clienteData_.getId());
+            return new ResponseEntity<>(clienteData_, HttpStatus.OK);
         } catch (Exception e) {
             log.error(e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

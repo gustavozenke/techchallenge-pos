@@ -11,8 +11,8 @@ public class Produto {
     private String id;
     private String nome;
 
-    @JsonProperty("nome_banco")
     //nome do produto em snake case para facilitar buscas no banco de dados
+    @JsonProperty("nome_banco")
     private String nomeBanco;
 
     private String descricao;
