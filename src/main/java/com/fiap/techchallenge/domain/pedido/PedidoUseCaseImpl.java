@@ -31,6 +31,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
 
     private final StateMachineFactory<EstadoPedido, EventoPedido> stateMachineFactory;
 
+    //TODO fazer criação de cliente através da criação de pedido
     public ResponseEntity<String> criarPedido(Pedido pedido) {
         try {
             long contador = contador();
