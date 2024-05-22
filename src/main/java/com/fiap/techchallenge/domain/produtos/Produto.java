@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.domain.produtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.Id;
 @Data
 public class Produto {
 
+    @JsonIgnore
     @Id
     private String id;
     private String nome;

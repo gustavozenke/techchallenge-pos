@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.domain.cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Cliente {
 
+    @JsonIgnore
     @Id
     private String id;
     private String cpf;

@@ -35,7 +35,7 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{status}")
+    @GetMapping("/all/{status}")
     public ResponseEntity listarPedido(@PathVariable("status") EstadoPedido estadoPedido){
         try {
             return pedidoUseCase.listarPedidoEstado(estadoPedido);

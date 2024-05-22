@@ -18,14 +18,13 @@ import java.util.List;
 @Document
 public class Pedido {
 
+    @JsonIgnore
     @Id
     private String id;
 
-    @JsonIgnore
     private EstadoPedido estadoPedido;
 
     //numero do pedido
-    @JsonIgnore
     private long sequencia;
 
     @Nullable
