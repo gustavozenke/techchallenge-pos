@@ -11,6 +11,11 @@ services:
       - 8083:8080
     depends_on:
       - mongo
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 700M
 
   mongo:
     container_name: "mongo"
