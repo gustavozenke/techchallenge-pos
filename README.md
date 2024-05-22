@@ -12,9 +12,10 @@ O projeto foi feito usando:
 
 ## Funcionamento
 
-O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [Problema](./doc/problema.md).
+O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](./doc/problema.md).
 
-A partir da leitura do enunciado, e do processo de event storm, foram desenhados os seguintes diagramas que permitiram o desenvolvimento
+A partir da leitura do enunciado, e do processo de _event storm_, foram desenhados os seguintes [DIAGRAMA](https://miro.com/app/board/uXjVKELC0Wk=/?share_link_id=400487379983) 
+que permitiram o desenvolvimento
 do projeto:
 
 ![diagrama event storm](./doc/event_storm.jpg)
