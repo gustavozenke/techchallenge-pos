@@ -30,7 +30,8 @@ serem armazenados em 4 categorias:
 Há ainda endpoints para cadastro e gerenciamento de clientes, caso estes optem por se cadastrarem no sistema, 
 e endpoints para armazenar e listar os pedidos, e permitir a cozinha alterar os estados destes de acordo com a produção.
 
-Os endpoints estão listados na pagina do swagger (que está no / ).
+Os endpoints estão listados na pagina do 
+[SWAGGER](http://localhost:8090/swagger-ui/index.html) (o index "/" também faz um redirecionamento para essa documentação).
 
 ## Rodando local
 
