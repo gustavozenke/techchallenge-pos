@@ -14,7 +14,7 @@ public class Produto {
     private String nome;
 
     //nome do produto em snake case para facilitar buscas no banco de dados
-    @JsonProperty("nome_banco")
+    @JsonProperty(value = "nome_banco", access = JsonProperty.Access.READ_ONLY)
     private String nomeBanco;
 
     private String descricao;

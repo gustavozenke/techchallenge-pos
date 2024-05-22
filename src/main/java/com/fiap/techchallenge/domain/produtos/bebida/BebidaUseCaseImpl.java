@@ -23,7 +23,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
                 bebidaRepository.save(
                         new Bebida(
                                 bebida.getNome(),
-                                gerarNomeBanco(bebida.getNomeBanco()),
+                                gerarNomeBanco(bebida.getNome()),
                                 bebida.getDescricao(),
                                 bebida.getPreco(),
                                 bebida.getTamanho()
@@ -52,6 +52,16 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
             return new ResponseEntity<>(bebidaData_.get(), HttpStatus.OK);
         } else {
             log.warn("{} não encontrado no banco de dados", nomeBanco);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<Bebida> buscarBebidaNomeETamanho(String nomeBanco, String tamanho) {
+        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBancoAndTamanho(nomeBanco,tamanho);
+        if (bebidaData_.isPresent()) {
+            return new ResponseEntity<>(bebidaData_.get(), HttpStatus.OK);
+        } else {
+            log.warn("{} {} não encontrado no banco de dados", nomeBanco, tamanho);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }

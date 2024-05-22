@@ -36,9 +36,18 @@ public class BebidaController {
     }
 
     @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Bebida> buscarBebida(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity<Bebida> buscarBebidaNome(@PathVariable("nomeBanco") String nomeBanco){
         try {
             return bebidaUseCase.buscarBebida(nomeBanco);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{nomeBanco}/{tamanho}")
+    public ResponseEntity<Bebida> buscarBebidaNomeTamanho(@PathVariable("nomeBanco") String nomeBanco, @PathVariable("tamanho") String tamanho){
+        try {
+            return bebidaUseCase.buscarBebidaNomeETamanho(nomeBanco, tamanho);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
