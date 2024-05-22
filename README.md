@@ -1,63 +1,43 @@
 # techchallenge-pos
 
-## O Problema:
-Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. 
-Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. 
-Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. 
-O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
+Sistema de controle de produtos e pedidos de uma lanchonete.
 
-Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. 
-Os pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e a perda de negócios.
+## Tecnologias
 
-Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, 
-gerenciando seus pedidos e estoques de forma adequada. 
-Sem ele, expandir a lanchonete pode acabar não dando certo, resultando em clientes insatisfeitos e impactando os negócios de forma negativa.
+O projeto foi feito usando:
+ - Java 21
+ - SpringBoot
+ - Spring State Machine
+ - Banco de dados MongoDB
 
+## Funcionamento
 
-Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food,
-que é composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente, com as seguintes funcionalidades:
+O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [Problema](./doc/problema.md).
 
-### Pedido
-Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se cadastrarem com nome, e-mail ou não se identificar, podendo montar o combo na seguinte sequência, sendo todas elas opcionais:
-    
-1. Lanche
-2. Acompanhamento
-3. Bebida
-4. Sobremesa
+A partir da leitura do enunciado, e do processo de event storm, foram desenhados os seguintes diagramas que permitiram o desenvolvimento
+do projeto:
 
-Em cada etapa é exibido o nome, descrição e preço de cada produto
+![diagrama event storm](./doc/event_storm.jpg)
 
-### Pagamento
-O sistema deverá possuir uma opção de pagamento integrada para MVP. A forma de pagamento oferecida será via QRCode do Mercado Pago.
+Com base em endpoints é possivel cadastrar e gerenciar os produtos de uma lanchonete, tais podutos foram pensados para
+serem armazenados em 4 categorias:
+ - Acompanhamentos
+ - Bebidas
+ - Lanches
+ - Sobremesa
 
-### Acompanhamento
-Uma vez que o pedido é confirmado e pago, ele é enviado para a cozinha para ser preparado.
-Simultaneamente deve aparecer em um monitor para o cliente acompanhar o progresso do seu pedido com as seguintes etapas:
-- Recebido
-- Em preparação
-- Pronto
-- Finalizado
+Há ainda endpoints para cadastro e gerenciamento de clientes, caso estes optem por se cadastrarem no sistema, 
+e endpoints para armazenar e listar os pedidos, e permitir a cozinha alterar os estados destes de acordo com a produção.
 
-### Entrega
+Os endpoints estão listados na pagina do swagger (que está no / ).
 
-Quando o pedido estiver pronto, o sistema deverá notificar o cliente que ele está pronto para retirada. 
-Ao ser retirado, o pedido deve ser atualizado para o status finalizado.
+## Rodando local
 
----
+Afim de facilitar o uso e testes do projeto, desenvolvemos um docker-compose já com todas as configurações necessarias.
 
-Além das etapas do cliente, o estabelecimento precisa de um acesso administrativo:
+Para rodar o projeto basta usar comando:
 
+````bash
+docker-compose up -d 
+````
 
-### Gerenciar Clientes
-Com a identificação dos clientes o estabelecimento pode trabalhar em campanhas promocionais.
-
-### Gerenciar produtos e categorias
-Os produtos dispostos para escolha do cliente serão gerenciados pelo estabelecimento, definindo nome, categoria, preço, descrição e imagens. Para esse sistema teremos categorias fixas:
-- Lanche
-- Acompanhamento
-- Bebida
-- Sobremesa
-
-**Acompanhamento de pedidos:** Deve ser possível acompanhar os pedidos em andamento e tempo de espera de cada pedido.
-
-As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel administrativo.
