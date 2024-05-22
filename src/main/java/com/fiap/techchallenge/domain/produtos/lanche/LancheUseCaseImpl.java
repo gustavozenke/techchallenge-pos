@@ -23,7 +23,7 @@ public class LancheUseCaseImpl implements LancheUseCase {
                 lancheRepository.save(
                         new Lanche(
                                 lanche.getNome(),
-                                gerarNomeBanco(lanche.getNomeBanco()),
+                                gerarNomeBanco(lanche.getNome()),
                                 lanche.getDescricao(),
                                 lanche.getPreco()
                         )
