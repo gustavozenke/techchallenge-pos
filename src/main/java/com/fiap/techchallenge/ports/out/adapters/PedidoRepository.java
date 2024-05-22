@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface PedidoRepository extends MongoRepository<Pedido, String> {
     Optional<Pedido> findBySequencia(Long sequencia);
-    List<Pedido> findAllByEstado(EstadoPedido estadoPedido);
+    List<Pedido> findAllByEstadoPedido(EstadoPedido estadoPedido);
 }

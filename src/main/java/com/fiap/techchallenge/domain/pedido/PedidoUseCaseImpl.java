@@ -97,7 +97,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
     }
 
     public ResponseEntity<List<Pedido>> listarPedidoEstado(EstadoPedido estadoPedido) {
-        List<Pedido> pedidos = pedidoRepository.findAllByEstado(estadoPedido);
+        List<Pedido> pedidos = pedidoRepository.findAllByEstadoPedido(estadoPedido);
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
