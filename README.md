@@ -43,3 +43,7 @@ Para rodar o projeto basta usar comando:
 docker-compose up -d 
 ````
 
+Os containers usarão as portas:
+- 8082 - MongoDB
+- 8083 - Backend
+
