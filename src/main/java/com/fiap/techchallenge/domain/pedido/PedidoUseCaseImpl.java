@@ -72,7 +72,6 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
 
         Optional<Pedido> pedidoData_ = pedidoRepository.findBySequencia(sequencia);
         if (pedidoData_.isPresent()) {
-            pedidoData_.get().setEstadoPedido(EstadoPedido.PAGO);
             pedidoRepository.save(pedidoData_.get());
             sendEvent(sequencia, stateMachine, EventoPedido.PAGANDO);
             log.info("pedido {} pago", sequencia);
