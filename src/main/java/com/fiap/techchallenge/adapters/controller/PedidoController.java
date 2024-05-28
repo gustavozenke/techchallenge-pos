@@ -53,7 +53,7 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}/receber")
+    @GetMapping("/{pedido}/enviar")
     public ResponseEntity<String> receberPedido(@PathVariable("pedido") long sequencia){
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENVIANDO);
