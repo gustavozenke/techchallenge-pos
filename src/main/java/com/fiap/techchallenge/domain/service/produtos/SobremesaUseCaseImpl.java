@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.domain.service;
+package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.SobremesaRepository;
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
@@ -31,7 +31,7 @@ public class SobremesaUseCaseImpl implements SobremesaUseCase {
                         )
                 );
                 log.info("{} criado", sobremesa.getNome());
-                return new ResponseEntity<>(null, HttpStatus.CREATED);
+                return new ResponseEntity<>(sobremesa.getNome() + " salvo no banco de dados", HttpStatus.CREATED);
             } else {
                 log.warn("{} já existe no banco de dados", sobremesa.getNome());
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);

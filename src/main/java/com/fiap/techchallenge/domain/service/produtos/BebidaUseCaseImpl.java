@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.domain.service;
+package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.BebidaRepository;
 import com.fiap.techchallenge.domain.model.produtos.Bebida;
@@ -32,7 +32,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
                         )
                 );
                 log.info("{} criado", bebida.getNome());
-                return new ResponseEntity<>(null, HttpStatus.CREATED);
+                return new ResponseEntity<>(bebida.getNome() + " salvo no banco de dados", HttpStatus.CREATED);
             } else {
                 log.warn("{} já existe no banco de dados", bebida.getNome());
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);

@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.domain.service;
+package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.AcompanhamentoRepository;
 import com.fiap.techchallenge.domain.model.produtos.Acompanhamento;
@@ -31,7 +31,7 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCase {
                         )
                 );
                 log.info("{} criado", acompanhamento.getNome());
-                return new ResponseEntity<>(null, HttpStatus.CREATED);
+                return new ResponseEntity<>(acompanhamento.getNome() + " salvo no banco de dados", HttpStatus.CREATED);
             } else {
                 log.warn("{} já existe no banco de dados", acompanhamento.getNome());
                 return new ResponseEntity<>(null, HttpStatus.CONFLICT);

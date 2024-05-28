@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.domain.service;
+package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.LancheRepository;
 import com.fiap.techchallenge.domain.model.produtos.Lanche;
