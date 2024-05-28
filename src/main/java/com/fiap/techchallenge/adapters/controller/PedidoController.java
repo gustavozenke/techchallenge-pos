@@ -17,7 +17,7 @@ public class PedidoController {
     @Autowired
     PedidoUseCase pedidoUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarPedido(@RequestBody Pedido pedido) {
         try {
             return pedidoUseCase.criarPedido(pedido);
@@ -44,7 +44,7 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/pay/{pedido}")
+    @GetMapping("/{pedido}/pay")
     public ResponseEntity<String> pagarPedido(@PathVariable("pedido") long sequencia){
         try {
             return pedidoUseCase.pagarPedido(sequencia);

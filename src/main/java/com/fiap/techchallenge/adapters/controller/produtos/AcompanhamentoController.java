@@ -17,7 +17,7 @@ public class AcompanhamentoController {
     @Autowired
     AcompanhamentoUseCase acompanhamentoUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarAcompanhamento(@RequestBody Acompanhamento acompanhamento){
         try {
             return acompanhamentoUseCase.criarAcompanhamento(acompanhamento);

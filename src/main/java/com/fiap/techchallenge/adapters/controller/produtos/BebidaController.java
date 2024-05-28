@@ -17,7 +17,7 @@ public class BebidaController {
     @Autowired
     BebidaUseCase bebidaUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarBebida(@RequestBody Bebida bebida){
         try {
             return bebidaUseCase.criarBebida(bebida);

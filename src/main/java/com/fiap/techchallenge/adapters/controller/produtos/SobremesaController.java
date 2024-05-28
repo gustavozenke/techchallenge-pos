@@ -17,7 +17,7 @@ public class SobremesaController {
     @Autowired
     SobremesaUseCase sobremesaUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa){
         try {
             return sobremesaUseCase.criarSobremsa(sobremesa);

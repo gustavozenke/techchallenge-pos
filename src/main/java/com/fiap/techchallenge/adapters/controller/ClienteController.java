@@ -15,7 +15,7 @@ public class ClienteController {
     @Autowired
     ClienteUseCase clienteUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarCliente(@RequestBody Cliente cliente){
         try {
             return clienteUseCase.criarCliente(cliente);

@@ -17,7 +17,7 @@ public class LancheController {
     @Autowired
     LancheUseCase lancheUseCase;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> criarLanche(@RequestBody Lanche lanche){
         try {
             return lancheUseCase.criarLanche(lanche);
