@@ -21,7 +21,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
 
     public ResponseEntity<String> criarBebida(Bebida bebida) {
         try {
-            if(buscarBebida(gerarNomeBanco(bebida.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+            if (buscarBebida(gerarNomeBanco(bebida.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 bebidaRepository.save(
                         new Bebida(
                                 bebida.getNome(),
@@ -44,7 +44,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
     }
 
     private String gerarNomeBanco(String nome) {
-        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        String nomeBanco = nome.replaceAll(" ", "_").toLowerCase();
         return nomeBanco;
     }
 
@@ -59,7 +59,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
     }
 
     public ResponseEntity<Bebida> buscarBebidaNomeETamanho(String nomeBanco, String tamanho) {
-        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBancoAndTamanho(nomeBanco,tamanho);
+        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBancoAndTamanho(nomeBanco, tamanho);
         if (bebidaData_.isPresent()) {
             return new ResponseEntity<>(bebidaData_.get(), HttpStatus.OK);
         } else {
@@ -72,7 +72,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
         List<Bebida> bebidas = bebidaRepository.findAll();
         return new ResponseEntity<>(bebidas, HttpStatus.OK);
     }
-    
+
     public ResponseEntity<Bebida> atualizarBebida(String nomeBanco, Bebida bebida) {
         try {
             Bebida bebidaData_ = buscarBebida(nomeBanco).getBody();

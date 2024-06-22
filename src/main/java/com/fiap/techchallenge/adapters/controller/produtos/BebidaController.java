@@ -18,7 +18,7 @@ public class BebidaController {
     BebidaUseCase bebidaUseCase;
 
     @PostMapping
-    public ResponseEntity<String> criarBebida(@RequestBody Bebida bebida){
+    public ResponseEntity<String> criarBebida(@RequestBody Bebida bebida) {
         try {
             return bebidaUseCase.criarBebida(bebida);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class BebidaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Bebida>> listarBebidas(){
+    public ResponseEntity<List<Bebida>> listarBebidas() {
         try {
             return bebidaUseCase.listarBebidas();
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class BebidaController {
     }
 
     @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Bebida> buscarBebidaNome(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity<Bebida> buscarBebidaNome(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return bebidaUseCase.buscarBebida(nomeBanco);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class BebidaController {
     }
 
     @GetMapping("/{nomeBanco}/{tamanho}")
-    public ResponseEntity<Bebida> buscarBebidaNomeTamanho(@PathVariable("nomeBanco") String nomeBanco, @PathVariable("tamanho") String tamanho){
+    public ResponseEntity<Bebida> buscarBebidaNomeTamanho(@PathVariable("nomeBanco") String nomeBanco, @PathVariable("tamanho") String tamanho) {
         try {
             return bebidaUseCase.buscarBebidaNomeETamanho(nomeBanco, tamanho);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class BebidaController {
     }
 
     @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Bebida bebida){
+    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Bebida bebida) {
         try {
             return bebidaUseCase.atualizarBebida(nomeBanco, bebida);
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class BebidaController {
     }
 
     @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarBebida(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity apagarBebida(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return bebidaUseCase.apagarBebida(nomeBanco);
         } catch (Exception e) {

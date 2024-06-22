@@ -19,7 +19,7 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCase {
     @Autowired
     AcompanhamentoRepository acompanhamentoRepository;
 
-    public ResponseEntity<String> criarAcompanhamento(Acompanhamento acompanhamento){
+    public ResponseEntity<String> criarAcompanhamento(Acompanhamento acompanhamento) {
         try {
             if (buscarAcompanhamento(gerarNomeBanco(acompanhamento.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 acompanhamentoRepository.save(
@@ -43,7 +43,7 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCase {
     }
 
     private String gerarNomeBanco(String nome) {
-        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        String nomeBanco = nome.replaceAll(" ", "_").toLowerCase();
         return nomeBanco;
     }
 
@@ -58,7 +58,7 @@ public class AcompanhamentoUseCaseImpl implements AcompanhamentoUseCase {
     }
 
     public ResponseEntity<List<Acompanhamento>> listarAcompanhamentos() {
-       List<Acompanhamento> acompanhamentos = acompanhamentoRepository.findAll();
+        List<Acompanhamento> acompanhamentos = acompanhamentoRepository.findAll();
         return new ResponseEntity<>(acompanhamentos, HttpStatus.OK);
     }
 

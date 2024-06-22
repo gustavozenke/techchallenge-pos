@@ -20,7 +20,7 @@ public class LancheUseCaseImpl implements LancheUseCase {
     LancheRepository lancheRepository;
 
     public ResponseEntity<String> criarLanche(Lanche lanche) {
-        try{
+        try {
             if (buscarLanche(gerarNomeBanco(lanche.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 lancheRepository.save(
                         new Lanche(
@@ -43,7 +43,7 @@ public class LancheUseCaseImpl implements LancheUseCase {
     }
 
     public String gerarNomeBanco(String nome) {
-        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        String nomeBanco = nome.replaceAll(" ", "_").toLowerCase();
         return nomeBanco;
     }
 
@@ -60,7 +60,7 @@ public class LancheUseCaseImpl implements LancheUseCase {
         List<Lanche> lanches = lancheRepository.findAll();
         return new ResponseEntity<>(lanches, HttpStatus.OK);
     }
-    
+
     public ResponseEntity<Lanche> atualizarLanche(String nomeBanco, Lanche lanche) {
         try {
             Lanche lancheData_ = buscarLanche(nomeBanco).getBody();

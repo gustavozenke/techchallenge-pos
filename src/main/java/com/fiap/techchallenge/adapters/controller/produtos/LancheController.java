@@ -18,7 +18,7 @@ public class LancheController {
     LancheUseCase lancheUseCase;
 
     @PostMapping
-    public ResponseEntity<String> criarLanche(@RequestBody Lanche lanche){
+    public ResponseEntity<String> criarLanche(@RequestBody Lanche lanche) {
         try {
             return lancheUseCase.criarLanche(lanche);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class LancheController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Lanche>> listarLanches(){
+    public ResponseEntity<List<Lanche>> listarLanches() {
         try {
             return lancheUseCase.listarLanches();
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class LancheController {
     }
 
     @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Lanche> buscarLanche(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity<Lanche> buscarLanche(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return lancheUseCase.buscarLanche(nomeBanco);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class LancheController {
     }
 
     @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarLanche(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Lanche lanche){
+    public ResponseEntity atualizarLanche(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Lanche lanche) {
         try {
             return lancheUseCase.atualizarLanche(nomeBanco, lanche);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class LancheController {
     }
 
     @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarLanche(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity apagarLanche(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return lancheUseCase.apagarLanche(nomeBanco);
         } catch (Exception e) {

@@ -18,7 +18,7 @@ public class AcompanhamentoController {
     AcompanhamentoUseCase acompanhamentoUseCase;
 
     @PostMapping
-    public ResponseEntity<String> criarAcompanhamento(@RequestBody Acompanhamento acompanhamento){
+    public ResponseEntity<String> criarAcompanhamento(@RequestBody Acompanhamento acompanhamento) {
         try {
             return acompanhamentoUseCase.criarAcompanhamento(acompanhamento);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class AcompanhamentoController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Acompanhamento>> listarAcompanhamentos(){
+    public ResponseEntity<List<Acompanhamento>> listarAcompanhamentos() {
         try {
             return acompanhamentoUseCase.listarAcompanhamentos();
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class AcompanhamentoController {
     }
 
     @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Acompanhamento> buscarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity<Acompanhamento> buscarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return acompanhamentoUseCase.buscarAcompanhamento(nomeBanco);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class AcompanhamentoController {
     }
 
     @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Acompanhamento acompanhamento){
+    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Acompanhamento acompanhamento) {
         try {
             return acompanhamentoUseCase.atualizarAcompanhamento(nomeBanco, acompanhamento);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class AcompanhamentoController {
     }
 
     @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity apagarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return acompanhamentoUseCase.apagarAcompanhamento(nomeBanco);
         } catch (Exception e) {

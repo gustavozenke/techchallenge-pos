@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface BebidaRepository extends MongoRepository<Bebida, String> {
     Optional<Bebida> findByNomeBanco(String nomeBanco);
+
     Optional<Bebida> findByNomeBancoAndTamanho(String nomeBanco, String Tamanho);
 }

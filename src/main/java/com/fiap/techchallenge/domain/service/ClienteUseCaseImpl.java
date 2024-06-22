@@ -1,8 +1,8 @@
 package com.fiap.techchallenge.domain.service;
 
 import com.fiap.techchallenge.adapters.repository.ClienteRepository;
-import com.fiap.techchallenge.ports.in.ClienteUseCase;
 import com.fiap.techchallenge.domain.model.Cliente;
+import com.fiap.techchallenge.ports.in.ClienteUseCase;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ClienteUseCaseImpl implements ClienteUseCase {
 
     @Autowired
-     private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     public ResponseEntity<String> criarCliente(Cliente cliente) {
         try {

@@ -18,7 +18,7 @@ public class SobremesaController {
     SobremesaUseCase sobremesaUseCase;
 
     @PostMapping
-    public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa){
+    public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa) {
         try {
             return sobremesaUseCase.criarSobremsa(sobremesa);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class SobremesaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Sobremesa>> listarSobremesas(){
+    public ResponseEntity<List<Sobremesa>> listarSobremesas() {
         try {
             return sobremesaUseCase.listarSobremesas();
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class SobremesaController {
     }
 
     @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Sobremesa> buscarSobremesa(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity<Sobremesa> buscarSobremesa(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return sobremesaUseCase.buscarSobremesa(nomeBanco);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class SobremesaController {
     }
 
     @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarSobremesa(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Sobremesa sobremesa){
+    public ResponseEntity atualizarSobremesa(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Sobremesa sobremesa) {
         try {
             return sobremesaUseCase.atualizarSobremesa(nomeBanco, sobremesa);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class SobremesaController {
     }
 
     @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarSobremesa(@PathVariable("nomeBanco") String nomeBanco){
+    public ResponseEntity apagarSobremesa(@PathVariable("nomeBanco") String nomeBanco) {
         try {
             return sobremesaUseCase.apagarSobremesa(nomeBanco);
         } catch (Exception e) {

@@ -27,11 +27,9 @@ import java.util.Optional;
 public class PedidoUseCaseImpl implements PedidoUseCase {
 
     static String SEQUENCIA;
-
+    private final StateMachineFactory<EstadoPedido, EventoPedido> stateMachineFactory;
     @Autowired
     PedidoRepository pedidoRepository;
-
-    private final StateMachineFactory<EstadoPedido, EventoPedido> stateMachineFactory;
 
     public ResponseEntity<String> criarPedido(Pedido pedido) {
         try {
@@ -76,14 +74,14 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
             pedidoRepository.save(pedidoData_.get());
             sendEvent(sequencia, stateMachine, EventoPedido.PAGANDO);
             log.info("pedido {} pago", sequencia);
-            return new ResponseEntity<>("Pedido " + sequencia + " " + pedidoData_.get().getEstadoPedido().toString(), HttpStatus.OK);
+            return new ResponseEntity<>("Pedido " + sequencia + " pago", HttpStatus.OK);
         } else {
             log.error("pedido {} não encontrado", sequencia);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-    public ResponseEntity<String> atualizarEstadoPedido(long sequencia, EventoPedido eventoPedido){
+    public ResponseEntity<String> atualizarEstadoPedido(long sequencia, EventoPedido eventoPedido) {
         StateMachine<EstadoPedido, EventoPedido> stateMachine = build(sequencia);
         Optional<Pedido> pedidoData_ = pedidoRepository.findBySequencia(sequencia);
         if (pedidoData_.isPresent()) {
@@ -102,19 +100,19 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
-    private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido){
+    private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido) {
         Message mensagem = MessageBuilder.withPayload(eventoPedido)
                 .setHeader(SEQUENCIA, sequencia)
                 .build();
         stateMachine.sendEvent(mensagem);
     }
 
-    private StateMachine<EstadoPedido, EventoPedido> build(Long sequencia){
+    private StateMachine<EstadoPedido, EventoPedido> build(Long sequencia) {
         Optional<Pedido> pedidoData_ = pedidoRepository.findBySequencia(sequencia);
         StateMachine<EstadoPedido, EventoPedido> stateMachine = stateMachineFactory.getStateMachine(String.valueOf(pedidoData_.get().getId()));
         stateMachine.stop();
         stateMachine.getStateMachineAccessor().doWithAllRegions(stateMachineAccessor -> {
-            stateMachineAccessor.resetStateMachine(new DefaultStateMachineContext<>(pedidoData_.get().getEstadoPedido(),null,null,null));
+            stateMachineAccessor.resetStateMachine(new DefaultStateMachineContext<>(pedidoData_.get().getEstadoPedido(), null, null, null));
         });
         stateMachine.start();
         return stateMachine;

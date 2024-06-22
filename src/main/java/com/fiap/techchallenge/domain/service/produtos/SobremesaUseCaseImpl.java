@@ -43,7 +43,7 @@ public class SobremesaUseCaseImpl implements SobremesaUseCase {
     }
 
     private String gerarNomeBanco(String nome) {
-        String nomeBanco = nome.replaceAll(" ","_").toLowerCase();
+        String nomeBanco = nome.replaceAll(" ", "_").toLowerCase();
         return nomeBanco;
     }
 
