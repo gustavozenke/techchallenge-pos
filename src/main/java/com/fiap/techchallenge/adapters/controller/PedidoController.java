@@ -35,6 +35,15 @@ public class PedidoController {
         }
     }
 
+    @GetMapping("/{pedido}/paymentstatus")
+    public ResponseEntity listarStatusPedido(@PathVariable("pedido") long sequencia) {
+        try {
+            return pedidoUseCase.listarStatusPedido(sequencia);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/all/{status}")
     public ResponseEntity listarPedido(@PathVariable("status") EstadoPedido estadoPedido) {
         try {

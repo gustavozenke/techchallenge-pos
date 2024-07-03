@@ -100,6 +100,11 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
+    public ResponseEntity listarStatusPedido(long sequencia) {
+        ResponseEntity<Pedido> pedidoData_ = buscarPedido(sequencia);
+        return new ResponseEntity<>(pedidoData_.getBody().getEstadoPedido(), HttpStatus.OK);
+    }
+
     private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido) {
         Message mensagem = MessageBuilder.withPayload(eventoPedido)
                 .setHeader(SEQUENCIA, sequencia)

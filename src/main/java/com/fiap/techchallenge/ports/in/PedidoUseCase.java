@@ -17,4 +17,6 @@ public interface PedidoUseCase {
     ResponseEntity<String> atualizarEstadoPedido(long sequencia, EventoPedido eventoPedido);
 
     ResponseEntity<List<Pedido>> listarPedidoEstado(EstadoPedido estadoPedido);
+
+    ResponseEntity<String> listarStatusPedido(long sequencia);
 }
