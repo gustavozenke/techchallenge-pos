@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/pedido")
@@ -26,8 +28,8 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}")
-    public ResponseEntity<Pedido> buscarPedido(@PathVariable("pedido") long sequencia) {
+    @GetMapping
+    public ResponseEntity<Pedido> buscarPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.buscarPedido(sequencia);
         } catch (Exception e) {
@@ -35,8 +37,18 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}/paymentstatus")
-    public ResponseEntity listarStatusPedido(@PathVariable("pedido") long sequencia) {
+
+    @GetMapping("/status")
+    public ResponseEntity listarPorPedido(@RequestParam("status") EstadoPedido estadoPedido) {
+        try {
+            return pedidoUseCase.listarPedidoPorEstado(estadoPedido);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/paymentstatus")
+    public ResponseEntity listarStatusPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.listarStatusPedido(sequencia);
         } catch (Exception e) {
@@ -44,26 +56,17 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/all/{status}")
-    public ResponseEntity listarPedido(@PathVariable("status") EstadoPedido estadoPedido) {
+    @GetMapping("/pay")
+    public ResponseEntity<String> pagarPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.listarPedidoEstado(estadoPedido);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PAGANDO);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/{pedido}/pay")
-    public ResponseEntity<String> pagarPedido(@PathVariable("pedido") long sequencia) {
-        try {
-            return pedidoUseCase.pagarPedido(sequencia);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/{pedido}/enviar")
-    public ResponseEntity<String> receberPedido(@PathVariable("pedido") long sequencia) {
+    @GetMapping("/enviar")
+    public ResponseEntity<String> receberPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENVIANDO);
         } catch (Exception e) {
@@ -71,8 +74,8 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}/preparar")
-    public ResponseEntity<String> prepararPedido(@PathVariable("pedido") long sequencia) {
+    @GetMapping("/preparar")
+    public ResponseEntity<String> prepararPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PREPARANDO);
         } catch (Exception e) {
@@ -80,8 +83,8 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}/finalizar")
-    public ResponseEntity<String> finalizarPedido(@PathVariable("pedido") long sequencia) {
+    @GetMapping("/finalizar")
+    public ResponseEntity<String> finalizarPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.FINALIZANDO);
         } catch (Exception e) {
@@ -89,10 +92,19 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{pedido}/entregar")
-    public ResponseEntity<String> entregarPedido(@PathVariable("pedido") long sequencia) {
+    @GetMapping("/entregar")
+    public ResponseEntity<String> entregarPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENTREGANDO);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Pedido>> listarPedidosEmAndamento() {
+        try {
+            return pedidoUseCase.listarPedidosEmAndamento();
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

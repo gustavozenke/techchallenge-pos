@@ -13,4 +13,5 @@ public interface PedidoRepository extends MongoRepository<Pedido, String> {
     Optional<Pedido> findBySequencia(Long sequencia);
 
     List<Pedido> findAllByEstadoPedido(EstadoPedido estadoPedido);
+    List<Pedido> findAllByEstadoPedidoOrderByDataPedido(EstadoPedido estadoPedido);
 }

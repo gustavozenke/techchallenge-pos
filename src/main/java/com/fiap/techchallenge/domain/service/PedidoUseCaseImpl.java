@@ -18,6 +18,7 @@ import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
 
     static String SEQUENCIA;
     private final StateMachineFactory<EstadoPedido, EventoPedido> stateMachineFactory;
+
     @Autowired
     PedidoRepository pedidoRepository;
 
@@ -66,20 +68,6 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         }
     }
 
-    public ResponseEntity<String> pagarPedido(long sequencia) {
-        StateMachine<EstadoPedido, EventoPedido> stateMachine = build(sequencia);
-
-        Optional<Pedido> pedidoData_ = pedidoRepository.findBySequencia(sequencia);
-        if (pedidoData_.isPresent()) {
-            pedidoRepository.save(pedidoData_.get());
-            sendEvent(sequencia, stateMachine, EventoPedido.PAGANDO);
-            log.info("pedido {} pago", sequencia);
-            return new ResponseEntity<>("Pedido " + sequencia + " pago", HttpStatus.OK);
-        } else {
-            log.error("pedido {} não encontrado", sequencia);
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
 
     public ResponseEntity<String> atualizarEstadoPedido(long sequencia, EventoPedido eventoPedido) {
         StateMachine<EstadoPedido, EventoPedido> stateMachine = build(sequencia);
@@ -95,7 +83,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         }
     }
 
-    public ResponseEntity<List<Pedido>> listarPedidoEstado(EstadoPedido estadoPedido) {
+    public ResponseEntity<List<Pedido>> listarPedidoPorEstado(EstadoPedido estadoPedido) {
         List<Pedido> pedidos = pedidoRepository.findAllByEstadoPedido(estadoPedido);
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
@@ -103,6 +91,14 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
     public ResponseEntity listarStatusPedido(long sequencia) {
         ResponseEntity<Pedido> pedidoData_ = buscarPedido(sequencia);
         return new ResponseEntity<>(pedidoData_.getBody().getEstadoPedido(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Pedido>> listarPedidosEmAndamento() {
+        List<Pedido> pedidos = pedidoRepository.findAllByEstadoPedidoOrderByDataPedido(EstadoPedido.PRONTO);
+        pedidos.addAll(pedidoRepository.findAllByEstadoPedidoOrderByDataPedido(EstadoPedido.EM_PREPARACAO));
+        pedidos.addAll(pedidoRepository.findAllByEstadoPedidoOrderByDataPedido(EstadoPedido.RECEBIDO));
+        return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
     private void sendEvent(long sequencia, StateMachine<EstadoPedido, EventoPedido> stateMachine, EventoPedido eventoPedido) {
