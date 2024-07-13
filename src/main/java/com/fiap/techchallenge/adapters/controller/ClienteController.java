@@ -24,8 +24,8 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/{cpf}")
-    public ResponseEntity<Cliente> buscarCliente(@PathVariable("cpf") String cpf) {
+    @GetMapping
+    public ResponseEntity<Cliente> buscarCliente(@RequestParam("cpf") String cpf) {
         try {
             return clienteUseCase.buscarCliente(cpf);
         } catch (Exception e) {
@@ -33,8 +33,8 @@ public class ClienteController {
         }
     }
 
-    @PatchMapping("/{cpf}/marketing")
-    public ResponseEntity<Cliente> atualizarMarketing(@PathVariable("cpf") String cpf, @RequestBody boolean marketing) {
+    @PatchMapping("/marketing")
+    public ResponseEntity<Cliente> atualizarMarketing(@RequestParam("cpf") String cpf, @RequestBody boolean marketing) {
         try {
             return clienteUseCase.atualizarMarketing(cpf, marketing);
         } catch (Exception e) {
@@ -42,8 +42,8 @@ public class ClienteController {
         }
     }
 
-    @PatchMapping("/{cpf}/email")
-    public ResponseEntity<Cliente> atualizarEmail(@PathVariable("cpf") String cpf, @RequestBody String email) {
+    @PatchMapping("/email")
+    public ResponseEntity<Cliente> atualizarEmail(@RequestParam("cpf") String cpf, @RequestBody String email) {
         try {
             return clienteUseCase.atualizarEmail(cpf, email);
         } catch (Exception e) {
@@ -51,8 +51,8 @@ public class ClienteController {
         }
     }
 
-    @PatchMapping("/{cpf}/nome")
-    public ResponseEntity<Cliente> atualizarNome(@PathVariable("cpf") String cpf, @RequestBody String nome) {
+    @PatchMapping("/nome")
+    public ResponseEntity<Cliente> atualizarNome(@RequestParam("cpf") String cpf, @RequestBody String nome) {
         try {
             return clienteUseCase.atualizarNome(cpf, nome);
         } catch (Exception e) {
@@ -60,8 +60,8 @@ public class ClienteController {
         }
     }
 
-    @DeleteMapping("/{cpf}")
-    public ResponseEntity<String> apagarCliente(@PathVariable("cpf") String cpf) {
+    @DeleteMapping
+    public ResponseEntity<String> apagarCliente(@RequestParam("cpf") String cpf) {
         try {
             return clienteUseCase.apagarCliente(cpf);
         } catch (Exception e) {
