@@ -20,7 +20,7 @@ public class SobremesaController {
     @PostMapping
     public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa) {
         try {
-            return sobremesaUseCase.criarSobremsa(sobremesa);
+            return sobremesaUseCase.criarSobremesa(sobremesa);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface SobremesaUseCase {
-    ResponseEntity<String> criarSobremsa(Sobremesa sobremesa);
+    ResponseEntity<String> criarSobremesa(Sobremesa sobremesa);
 
     ResponseEntity<Sobremesa> buscarSobremesa(String nomeBanco);
 

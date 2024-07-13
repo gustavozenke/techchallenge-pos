@@ -19,7 +19,7 @@ public class SobremesaUseCaseImpl implements SobremesaUseCase {
     @Autowired
     SobremesaRepository sobremesaRepository;
 
-    public ResponseEntity<String> criarSobremsa(Sobremesa sobremesa) {
+    public ResponseEntity<String> criarSobremesa(Sobremesa sobremesa) {
         try {
             if (buscarSobremesa(gerarNomeBanco(sobremesa.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 sobremesaRepository.save(
