@@ -88,7 +88,7 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
-    public ResponseEntity listarStatusPedido(long sequencia) {
+    public ResponseEntity buscarStatusPedido(long sequencia) {
         ResponseEntity<Pedido> pedidoData_ = buscarPedido(sequencia);
         return new ResponseEntity<>(pedidoData_.getBody().getEstadoPedido(), HttpStatus.OK);
     }

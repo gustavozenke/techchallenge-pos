@@ -4,6 +4,7 @@ import com.fiap.techchallenge.domain.model.Pedido;
 import com.fiap.techchallenge.domain.statemachine.EstadoPedido;
 import com.fiap.techchallenge.domain.statemachine.EventoPedido;
 import com.fiap.techchallenge.ports.in.PedidoUseCase;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,54 +49,58 @@ public class PedidoController {
     }
 
     @GetMapping("/paymentstatus")
-    public ResponseEntity listarStatusPedido(@RequestParam("pedido") long sequencia) {
+    public ResponseEntity buscarStatusPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.listarStatusPedido(sequencia);
+            return pedidoUseCase.buscarStatusPedido(sequencia);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/pay")
+    //1 - pagar
+    @PatchMapping("/pay")
     public ResponseEntity<String> pagarPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PAGANDO);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PAGAR);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/enviar")
+    //2 - pedido recebido pela cozinha
+    @PatchMapping("/recebido")
     public ResponseEntity<String> receberPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENVIANDO);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.RECEBER);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/preparar")
+    //3 - pedido em preparação
+    @PatchMapping("/empreparacao")
     public ResponseEntity<String> prepararPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PREPARANDO);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PREPARAR);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/finalizar")
+    //4 - pedido pronto para ser entregue
+    @PatchMapping("/pronto")
     public ResponseEntity<String> finalizarPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.FINALIZANDO);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.APRONTAR);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/entregar")
+    //5 - pedido entregue para o cliente
+    @PatchMapping("/finalizado")
     public ResponseEntity<String> entregarPedido(@RequestParam("pedido") long sequencia) {
         try {
-            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENTREGANDO);
+            return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.ENTREGAR);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

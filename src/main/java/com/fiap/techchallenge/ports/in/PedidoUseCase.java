@@ -16,7 +16,7 @@ public interface PedidoUseCase {
 
     ResponseEntity<List<Pedido>> listarPedidoPorEstado(EstadoPedido estadoPedido);
 
-    ResponseEntity<String> listarStatusPedido(long sequencia);
+    ResponseEntity<String> buscarStatusPedido(long sequencia);
 
     ResponseEntity<List<Pedido>> listarPedidosEmAndamento();
 }

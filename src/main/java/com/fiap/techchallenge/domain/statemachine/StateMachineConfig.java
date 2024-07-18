@@ -35,15 +35,15 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<EstadoPedi
         transitions.withExternal()
                 .source(EstadoPedido.A_PAGAR).target(EstadoPedido.A_PAGAR).event(EventoPedido.A_PAGAR)
                 .and().withExternal()
-                .source(EstadoPedido.A_PAGAR).target(EstadoPedido.PAGO).event(EventoPedido.PAGANDO)
+                .source(EstadoPedido.A_PAGAR).target(EstadoPedido.PAGO).event(EventoPedido.PAGAR)
                 .and().withExternal()
-                .source(EstadoPedido.PAGO).target(EstadoPedido.RECEBIDO).event(EventoPedido.ENVIANDO)
+                .source(EstadoPedido.PAGO).target(EstadoPedido.RECEBIDO).event(EventoPedido.RECEBER)
                 .and().withExternal()
-                .source(EstadoPedido.RECEBIDO).target(EstadoPedido.EM_PREPARACAO).event(EventoPedido.PREPARANDO)
+                .source(EstadoPedido.RECEBIDO).target(EstadoPedido.EM_PREPARACAO).event(EventoPedido.PREPARAR)
                 .and().withExternal()
-                .source(EstadoPedido.EM_PREPARACAO).target(EstadoPedido.PRONTO).event(EventoPedido.FINALIZANDO)
+                .source(EstadoPedido.EM_PREPARACAO).target(EstadoPedido.PRONTO).event(EventoPedido.APRONTAR)
                 .and().withExternal()
-                .source(EstadoPedido.PRONTO).target(EstadoPedido.FINALIZADO).event(EventoPedido.ENTREGANDO);
+                .source(EstadoPedido.PRONTO).target(EstadoPedido.FINALIZADO).event(EventoPedido.ENTREGAR);
     }
 
     //Startup automatico + incluir listener
