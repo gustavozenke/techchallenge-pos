@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.ports.in.produtos.lanche;
+package com.fiap.techchallenge.ports.in.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Lanche;
 import org.springframework.http.ResponseEntity;

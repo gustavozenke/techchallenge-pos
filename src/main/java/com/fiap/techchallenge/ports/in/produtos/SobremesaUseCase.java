@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.ports.in.produtos.sobremesa;
+package com.fiap.techchallenge.ports.in.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
 import org.springframework.http.ResponseEntity;

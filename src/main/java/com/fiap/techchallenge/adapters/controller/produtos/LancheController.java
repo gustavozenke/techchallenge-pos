@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.adapters.controller.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Lanche;
-import com.fiap.techchallenge.ports.in.produtos.lanche.LancheUseCase;
+import com.fiap.techchallenge.ports.in.produtos.LancheUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +35,8 @@ public class LancheController {
         }
     }
 
-    @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Lanche> buscarLanche(@PathVariable("nomeBanco") String nomeBanco) {
+    @GetMapping
+    public ResponseEntity<Lanche> buscarLanche(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return lancheUseCase.buscarLanche(nomeBanco);
         } catch (Exception e) {
@@ -44,8 +44,8 @@ public class LancheController {
         }
     }
 
-    @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarLanche(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Lanche lanche) {
+    @PutMapping
+    public ResponseEntity atualizarLanche(@RequestParam("nomeBanco") String nomeBanco, @RequestBody Lanche lanche) {
         try {
             return lancheUseCase.atualizarLanche(nomeBanco, lanche);
         } catch (Exception e) {
@@ -53,8 +53,8 @@ public class LancheController {
         }
     }
 
-    @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarLanche(@PathVariable("nomeBanco") String nomeBanco) {
+    @DeleteMapping
+    public ResponseEntity apagarLanche(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return lancheUseCase.apagarLanche(nomeBanco);
         } catch (Exception e) {

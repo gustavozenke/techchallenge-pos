@@ -2,7 +2,7 @@ package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.BebidaRepository;
 import com.fiap.techchallenge.domain.model.produtos.Bebida;
-import com.fiap.techchallenge.ports.in.produtos.bebida.BebidaUseCase;
+import com.fiap.techchallenge.ports.in.produtos.BebidaUseCase;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
                                 gerarNomeBanco(bebida.getNome()),
                                 bebida.getDescricao(),
                                 bebida.getPreco(),
-                                bebida.getTamanho()
+                                bebida.getTamanhos()
                         )
                 );
                 log.info("{} criado", bebida.getNome());
@@ -58,16 +58,6 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
         }
     }
 
-    public ResponseEntity<Bebida> buscarBebidaNomeETamanho(String nomeBanco, String tamanho) {
-        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBancoAndTamanho(nomeBanco, tamanho);
-        if (bebidaData_.isPresent()) {
-            return new ResponseEntity<>(bebidaData_.get(), HttpStatus.OK);
-        } else {
-            log.warn("{} {} não encontrado no banco de dados", nomeBanco, tamanho);
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
     public ResponseEntity<List<Bebida>> listarBebidas() {
         List<Bebida> bebidas = bebidaRepository.findAll();
         return new ResponseEntity<>(bebidas, HttpStatus.OK);
@@ -77,7 +67,7 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
         try {
             Bebida bebidaData_ = buscarBebida(nomeBanco).getBody();
             bebidaData_.setDescricao(bebida.getDescricao());
-            bebidaData_.setTamanho(bebida.getTamanho());
+            bebidaData_.setTamanhos(bebida.getTamanhos());
             bebidaData_.setPreco(bebida.getPreco());
             bebidaRepository.save(bebidaData_);
             log.info("{} atualizado com sucesso", bebidaData_.getNome());
