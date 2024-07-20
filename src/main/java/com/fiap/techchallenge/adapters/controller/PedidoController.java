@@ -38,7 +38,6 @@ public class PedidoController {
         }
     }
 
-
     @GetMapping("/status")
     public ResponseEntity listarPorPedido(@RequestParam("status") EstadoPedido estadoPedido) {
         try {
@@ -58,7 +57,7 @@ public class PedidoController {
     }
 
     //1 - pagar
-    @PatchMapping("/pay")
+    @GetMapping("/pago")
     public ResponseEntity<String> pagarPedido(@RequestParam("pedido") long sequencia) {
         try {
             return pedidoUseCase.atualizarEstadoPedido(sequencia, EventoPedido.PAGAR);
@@ -66,6 +65,7 @@ public class PedidoController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     //2 - pedido recebido pela cozinha
     @PatchMapping("/recebido")
     public ResponseEntity<String> receberPedido(@RequestParam("pedido") long sequencia) {
