@@ -39,7 +39,7 @@ public class PedidoController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity listarPorPedido(@RequestParam("status") EstadoPedido estadoPedido) {
+    public ResponseEntity listarPorEstado(@RequestParam("status") EstadoPedido estadoPedido) {
         try {
             return pedidoUseCase.listarPedidoPorEstado(estadoPedido);
         } catch (Exception e) {
