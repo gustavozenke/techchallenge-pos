@@ -12,9 +12,11 @@ public interface PedidoUseCase {
 
     ResponseEntity<Pedido> buscarPedido(long sequencia);
 
-    ResponseEntity<String> pagarPedido(long sequencia);
-
     ResponseEntity<String> atualizarEstadoPedido(long sequencia, EventoPedido eventoPedido);
 
-    ResponseEntity<List<Pedido>> listarPedidoEstado(EstadoPedido estadoPedido);
+    ResponseEntity<List<Pedido>> listarPedidoPorEstado(EstadoPedido estadoPedido);
+
+    ResponseEntity<String> buscarStatusPedido(long sequencia);
+
+    ResponseEntity<List<Pedido>> listarPedidosEmAndamento();
 }

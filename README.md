@@ -35,11 +35,11 @@ Swagger (o index "/" faz um redirecionamento para essa documentação).
 
 O fluxo esperado de um pedido é: 
 1. POST /pedido -> criação do pedido
-2. GET /{pedido}/pay -> mock de pagamento
-3. GET /{pedido}/enviar -> enviar pedido para a cozinha
-4. GET /{pedido}/preparar -> cozinha preparando o pedido
-5. GET /{pedido}/finalizar -> cozinha finalizando o preparo do pedido
-6. GET /{pedido}/entregar -> pedido entregue ao cliente
+2. GET /pago -> mock de pagamento
+3. PATCH /recebido -> enviar pedido para a cozinha
+4. PATCH /empreparacao -> cozinha preparando o pedido
+5. PATCH /pronto -> cozinha finalizando o preparo do pedido
+6. PATCH /finalizado -> pedido entregue ao cliente
 
 ## Rodando local
 

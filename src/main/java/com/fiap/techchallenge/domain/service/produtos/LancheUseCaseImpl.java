@@ -2,7 +2,7 @@ package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.LancheRepository;
 import com.fiap.techchallenge.domain.model.produtos.Lanche;
-import com.fiap.techchallenge.ports.in.produtos.lanche.LancheUseCase;
+import com.fiap.techchallenge.ports.in.produtos.LancheUseCase;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

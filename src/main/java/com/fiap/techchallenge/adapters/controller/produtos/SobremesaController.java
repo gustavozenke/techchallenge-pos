@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.adapters.controller.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
-import com.fiap.techchallenge.ports.in.produtos.sobremesa.SobremesaUseCase;
+import com.fiap.techchallenge.ports.in.produtos.SobremesaUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class SobremesaController {
     @PostMapping
     public ResponseEntity<String> criarSobremesa(@RequestBody Sobremesa sobremesa) {
         try {
-            return sobremesaUseCase.criarSobremsa(sobremesa);
+            return sobremesaUseCase.criarSobremesa(sobremesa);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -35,8 +35,8 @@ public class SobremesaController {
         }
     }
 
-    @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Sobremesa> buscarSobremesa(@PathVariable("nomeBanco") String nomeBanco) {
+    @GetMapping
+    public ResponseEntity<Sobremesa> buscarSobremesa(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return sobremesaUseCase.buscarSobremesa(nomeBanco);
         } catch (Exception e) {
@@ -44,8 +44,8 @@ public class SobremesaController {
         }
     }
 
-    @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarSobremesa(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Sobremesa sobremesa) {
+    @PutMapping
+    public ResponseEntity atualizarSobremesa(@RequestParam("nomeBanco") String nomeBanco, @RequestBody Sobremesa sobremesa) {
         try {
             return sobremesaUseCase.atualizarSobremesa(nomeBanco, sobremesa);
         } catch (Exception e) {
@@ -53,8 +53,8 @@ public class SobremesaController {
         }
     }
 
-    @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarSobremesa(@PathVariable("nomeBanco") String nomeBanco) {
+    @DeleteMapping
+    public ResponseEntity apagarSobremesa(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return sobremesaUseCase.apagarSobremesa(nomeBanco);
         } catch (Exception e) {

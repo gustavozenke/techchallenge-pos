@@ -1,7 +1,8 @@
 package com.fiap.techchallenge.adapters.controller.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Bebida;
-import com.fiap.techchallenge.ports.in.produtos.bebida.BebidaUseCase;
+
+import com.fiap.techchallenge.ports.in.produtos.BebidaUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,8 @@ public class BebidaController {
         }
     }
 
-    @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Bebida> buscarBebidaNome(@PathVariable("nomeBanco") String nomeBanco) {
+    @GetMapping
+    public ResponseEntity<Bebida> buscarBebidaNome(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return bebidaUseCase.buscarBebida(nomeBanco);
         } catch (Exception e) {
@@ -44,17 +45,9 @@ public class BebidaController {
         }
     }
 
-    @GetMapping("/{nomeBanco}/{tamanho}")
-    public ResponseEntity<Bebida> buscarBebidaNomeTamanho(@PathVariable("nomeBanco") String nomeBanco, @PathVariable("tamanho") String tamanho) {
-        try {
-            return bebidaUseCase.buscarBebidaNomeETamanho(nomeBanco, tamanho);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Bebida bebida) {
+    @PutMapping
+    public ResponseEntity atualizarBebidas(@RequestParam("nomeBanco") String nomeBanco, @RequestBody Bebida bebida) {
         try {
             return bebidaUseCase.atualizarBebida(nomeBanco, bebida);
         } catch (Exception e) {
@@ -62,8 +55,8 @@ public class BebidaController {
         }
     }
 
-    @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarBebida(@PathVariable("nomeBanco") String nomeBanco) {
+    @DeleteMapping
+    public ResponseEntity apagarBebida(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return bebidaUseCase.apagarBebida(nomeBanco);
         } catch (Exception e) {

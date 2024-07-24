@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.ports.in.produtos.acompanhamento;
+package com.fiap.techchallenge.ports.in.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Acompanhamento;
 import org.springframework.http.ResponseEntity;

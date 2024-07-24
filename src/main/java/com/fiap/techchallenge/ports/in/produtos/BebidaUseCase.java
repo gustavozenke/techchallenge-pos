@@ -1,4 +1,4 @@
-package com.fiap.techchallenge.ports.in.produtos.bebida;
+package com.fiap.techchallenge.ports.in.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Bebida;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +9,6 @@ public interface BebidaUseCase {
     ResponseEntity<String> criarBebida(Bebida bebida);
 
     ResponseEntity<Bebida> buscarBebida(String nomeBanco);
-
-    ResponseEntity<Bebida> buscarBebidaNomeETamanho(String nomeBanco, String tamanho);
 
     ResponseEntity<List<Bebida>> listarBebidas();
 

@@ -2,7 +2,7 @@ package com.fiap.techchallenge.domain.service.produtos;
 
 import com.fiap.techchallenge.adapters.repository.produtos.SobremesaRepository;
 import com.fiap.techchallenge.domain.model.produtos.Sobremesa;
-import com.fiap.techchallenge.ports.in.produtos.sobremesa.SobremesaUseCase;
+import com.fiap.techchallenge.ports.in.produtos.SobremesaUseCase;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class SobremesaUseCaseImpl implements SobremesaUseCase {
     @Autowired
     SobremesaRepository sobremesaRepository;
 
-    public ResponseEntity<String> criarSobremsa(Sobremesa sobremesa) {
+    public ResponseEntity<String> criarSobremesa(Sobremesa sobremesa) {
         try {
             if (buscarSobremesa(gerarNomeBanco(sobremesa.getNome())).getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 sobremesaRepository.save(

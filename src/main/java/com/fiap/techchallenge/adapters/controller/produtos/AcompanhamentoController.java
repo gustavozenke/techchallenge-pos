@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.adapters.controller.produtos;
 
 import com.fiap.techchallenge.domain.model.produtos.Acompanhamento;
-import com.fiap.techchallenge.ports.in.produtos.acompanhamento.AcompanhamentoUseCase;
+import com.fiap.techchallenge.ports.in.produtos.AcompanhamentoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +35,8 @@ public class AcompanhamentoController {
         }
     }
 
-    @GetMapping("/{nomeBanco}")
-    public ResponseEntity<Acompanhamento> buscarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco) {
+    @GetMapping
+    public ResponseEntity<Acompanhamento> buscarAcompanhamento(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return acompanhamentoUseCase.buscarAcompanhamento(nomeBanco);
         } catch (Exception e) {
@@ -44,8 +44,8 @@ public class AcompanhamentoController {
         }
     }
 
-    @PutMapping("/{nomeBanco}")
-    public ResponseEntity atualizarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco, @RequestBody Acompanhamento acompanhamento) {
+    @PutMapping
+    public ResponseEntity atualizarAcompanhamento(@RequestParam("nomeBanco") String nomeBanco, @RequestBody Acompanhamento acompanhamento) {
         try {
             return acompanhamentoUseCase.atualizarAcompanhamento(nomeBanco, acompanhamento);
         } catch (Exception e) {
@@ -53,8 +53,8 @@ public class AcompanhamentoController {
         }
     }
 
-    @DeleteMapping("/{nomeBanco}")
-    public ResponseEntity apagarAcompanhamento(@PathVariable("nomeBanco") String nomeBanco) {
+    @DeleteMapping
+    public ResponseEntity apagarAcompanhamento(@RequestParam("nomeBanco") String nomeBanco) {
         try {
             return acompanhamentoUseCase.apagarAcompanhamento(nomeBanco);
         } catch (Exception e) {
