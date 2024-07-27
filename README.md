@@ -2,6 +2,8 @@
 
 Sistema de controle de produtos e pedidos de uma lanchonete.
 
+[VÍDEO DE DEMONSTRAÇÃO](https://youtu.be/3njbwij0Hjg)
+
 ## Tecnologias
 
 O projeto foi feito usando:
@@ -10,15 +12,18 @@ O projeto foi feito usando:
  - Spring State Machine
  - Banco de dados MongoDB
 
+Com a seguinte arquitetura:
+![diagrama de arquitetura](utils/doc/images/diagrama_arquitetura.jpg)
+
 ## Funcionamento
 
-O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](./doc/problema.md).
+O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](utils/doc/problema.md).
 
 A partir da leitura do enunciado, e do processo de _event storm_, foram desenhados os seguintes [DIAGRAMAS](https://miro.com/app/board/uXjVKELC0Wk=/?share_link_id=400487379983) 
 que permitiram o desenvolvimento
 do projeto:
 
-![diagrama event storm](./doc/event_storm.jpg)
+![diagrama event storm](utils/doc/images/event_storm.jpg)
 
 Com base em endpoints é possivel cadastrar e gerenciar os produtos de uma lanchonete, tais podutos foram pensados para
 serem armazenados em 4 categorias:
@@ -41,6 +46,8 @@ O fluxo esperado de um pedido é:
 5. PATCH /pronto -> cozinha finalizando o preparo do pedido
 6. PATCH /finalizado -> pedido entregue ao cliente
 
+Para mais informações a respeito dos endpoints há uma [DOCUMENTAÇÃO](utils/doc/endpoints.md) detalhada.
+
 ## Rodando local
 
 Afim de facilitar o uso e testes do projeto, desenvolvemos um docker-compose já com todas as configurações necessarias.
@@ -55,3 +62,4 @@ Os containers usarão as portas:
 - 8082 - MongoDB
 - 8083 - Backend
 
+Há uma collection para insomnia com as requisições mapeadas na [UTILS](utils)
