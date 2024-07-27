@@ -10,15 +10,18 @@ O projeto foi feito usando:
  - Spring State Machine
  - Banco de dados MongoDB
 
+Com a seguinte arquitetura:
+![diagrama de arquitetura](utils/doc/diagrama_arquitetura.jpg)
+
 ## Funcionamento
 
-O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](./doc/problema.md).
+O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](utils/doc/problema.md).
 
 A partir da leitura do enunciado, e do processo de _event storm_, foram desenhados os seguintes [DIAGRAMAS](https://miro.com/app/board/uXjVKELC0Wk=/?share_link_id=400487379983) 
 que permitiram o desenvolvimento
 do projeto:
 
-![diagrama event storm](./doc/event_storm.jpg)
+![diagrama event storm](utils/doc/event_storm.jpg)
 
 Com base em endpoints é possivel cadastrar e gerenciar os produtos de uma lanchonete, tais podutos foram pensados para
 serem armazenados em 4 categorias:
@@ -55,3 +58,4 @@ Os containers usarão as portas:
 - 8082 - MongoDB
 - 8083 - Backend
 
+Há uma collection para insomnia com as requisições mapeadas na [UTILS](./utils)
