@@ -21,7 +21,7 @@ spec:
               value: TechChallenge
             - name: DB_URL
               value: mongodb://techchallenge:password@mongo:27017/
-          image: techchallenge/backend
+          image: manchon/techchallenge-pos:main
           name: backend
           imagePullPolicy: IfNotPresent
           ports:
