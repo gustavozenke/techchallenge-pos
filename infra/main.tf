@@ -11,8 +11,8 @@ terraform {
 
 provider "helm" {
   kubernetes {
-    host                   = aws_eks_cluster.techchallenge_cluster.endpoint
-    cluster_ca_certificate = base64decode(aws_eks_cluster.techchallenge_cluster.certificate_authority[0].data)
+    host                   = aws_eks_cluster.cluster.cluster_name
+    cluster_ca_certificate = base64decode(aws_eks_cluster.cluster.certificate_authority[0].data)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
       args        = ["eks", "get-token", "--cluster-name", var.cluster_name, "--output", "json"]
@@ -20,6 +20,11 @@ provider "helm" {
     }
   }
 }
+
+data "aws_eks_cluster" "cluster" {
+    name=var.cluster_name
+}
+
 
 provider "aws" {
   region = var.aws_region
