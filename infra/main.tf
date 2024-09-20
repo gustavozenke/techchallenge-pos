@@ -31,7 +31,7 @@ provider "aws" {
 
 resource "helm_release" "app" {
   name             = var.app_name
-  repository       = file("${path.module}/helm/backend")
+  repository       = "${path.module}/helm/backend"
   chart            = var.app_name
   namespace        = var.app_name
   create_namespace = true
