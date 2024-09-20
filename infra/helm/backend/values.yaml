@@ -84,7 +84,7 @@ env:
   - name: DB_DATABASE
     value: techchallenge
   - name: DB_URL
-    value: mongodb://techchallenge:password@mongodb.mongodb:27017/
+    value: mongodb://root:password@mongodb.mongodb:27017/
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
