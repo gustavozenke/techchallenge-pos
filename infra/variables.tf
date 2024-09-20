@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "cluster_name" {
   description = "Name of the EKS Cluster"
   type        = string
-  default     = "techchallenge"
+  default     = "techchallenge-cluster"
 }
 
 variable "app_name" {
