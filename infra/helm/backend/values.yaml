@@ -80,11 +80,12 @@ resources:
     cpu: 500m
     memory: 512Mi
 
+# This is to set environment variables
 env: 
   - name: DB_DATABASE
-    value: techchallenge
+    value: TechChallenge
   - name: DB_URL
-    value: mongodb://root:password@mongodb.mongodb:27017/
+    value: mongodb+srv://tech:qPJ7uBMFNUkRTuP5@cluster0.ilvmgzj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
