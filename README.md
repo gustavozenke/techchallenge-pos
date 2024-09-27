@@ -12,9 +12,6 @@ O projeto foi feito usando:
  - Spring State Machine
  - Banco de dados MongoDB
 
-Com a seguinte arquitetura:
-![diagrama de arquitetura](utils/doc/images/diagrama_arquitetura.jpg)
-
 ## Funcionamento
 
 O projeto foi pensado como uma forma de solucionar o problema descrito no arquivo [PROBLEMA](utils/doc/problema.md).
