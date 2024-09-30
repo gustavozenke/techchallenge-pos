@@ -5,9 +5,9 @@ replicaCount: 1
 image:
   repository: gustavozenke/techchallenge-pos
   # This sets the pull policy for images.
-  pullPolicy: ifNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "main"
+  tag: "develop"
 
 imagePullSecrets: []
 # This is to override the chart name.
