@@ -36,3 +36,12 @@ resource "helm_release" "app" {
   namespace        = var.app_name
   create_namespace = true
 }
+
+# Configure backend - terraform.tfstate
+terraform {
+  backend "s3" {
+    bucket = "tech-challenge-terraform-tfstate"
+    key    = "terraform-backend.tfstate"
+    region = "us-east-1"
+  }
+}
