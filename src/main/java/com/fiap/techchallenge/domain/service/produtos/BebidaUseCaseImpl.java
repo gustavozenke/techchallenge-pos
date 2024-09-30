@@ -44,16 +44,16 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
     }
 
     private String gerarNomeBanco(String nome) {
-        String nomeBanco = nome.replaceAll(" ", "_").toLowerCase();
-        return nomeBanco;
+        return nome.replaceAll(" ", "_").toLowerCase();
     }
 
-    public ResponseEntity<Bebida> buscarBebida(String nomeBanco) {
-        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBanco(nomeBanco);
+    public ResponseEntity<Bebida> buscarBebida(String nome) {
+
+        Optional<Bebida> bebidaData_ = bebidaRepository.findByNomeBanco(gerarNomeBanco(nome));
         if (bebidaData_.isPresent()) {
             return new ResponseEntity<>(bebidaData_.get(), HttpStatus.OK);
         } else {
-            log.warn("{} não encontrado no banco de dados", nomeBanco);
+            log.warn("{} não encontrado no banco de dados", nome);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -63,9 +63,9 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
         return new ResponseEntity<>(bebidas, HttpStatus.OK);
     }
 
-    public ResponseEntity<Bebida> atualizarBebida(String nomeBanco, Bebida bebida) {
+    public ResponseEntity<Bebida> atualizarBebida(String nome, Bebida bebida) {
         try {
-            Bebida bebidaData_ = buscarBebida(nomeBanco).getBody();
+            Bebida bebidaData_ = buscarBebida(gerarNomeBanco(nome)).getBody();
             bebidaData_.setDescricao(bebida.getDescricao());
             bebidaData_.setTamanhos(bebida.getTamanhos());
             bebidaData_.setPreco(bebida.getPreco());
@@ -78,9 +78,9 @@ public class BebidaUseCaseImpl implements BebidaUseCase {
         }
     }
 
-    public ResponseEntity<String> apagarBebida(String nomeBanco) {
+    public ResponseEntity<String> apagarBebida(String nome) {
         try {
-            Bebida bebidaData_ = buscarBebida(nomeBanco).getBody();
+            Bebida bebidaData_ = buscarBebida(gerarNomeBanco(nome)).getBody();
             bebidaRepository.delete(bebidaData_);
             log.info("{} excluido", bebidaData_.getNome());
             return new ResponseEntity<>(bebidaData_.getNome() + " apagado", HttpStatus.OK);
