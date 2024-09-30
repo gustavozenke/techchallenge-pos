@@ -5,8 +5,6 @@ terraform {
       version = "~> 5.66.0"
     }
   }
-
-  required_version = "~> 1.9.5"
 }
 
 provider "helm" {
@@ -35,4 +33,13 @@ resource "helm_release" "app" {
   chart            = var.app_name
   namespace        = var.app_name
   create_namespace = true
+}
+
+# Configure backend - terraform.tfstate
+terraform {
+  backend "s3" {
+    bucket = "tech-challenge-terraform-tfstate"
+    key    = "terraform-backend.tfstate"
+    region = "us-east-1"
+  }
 }
