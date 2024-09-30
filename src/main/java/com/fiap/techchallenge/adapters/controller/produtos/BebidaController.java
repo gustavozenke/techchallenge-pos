@@ -56,9 +56,9 @@ public class BebidaController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> apagarBebida(@RequestParam("nome") String nomeBanco) {
+    public ResponseEntity<String> apagarBebida(@RequestParam("nome") String nome) {
         try {
-            return bebidaUseCase.apagarBebida(nomeBanco);
+            return bebidaUseCase.apagarBebida(nome);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
